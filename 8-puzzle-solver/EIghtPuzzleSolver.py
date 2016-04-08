@@ -1,18 +1,19 @@
 #coding: utf-8
-from node import Nodo
-from const import ConstMatriz
+from Nodo import Nodo
+from Const import ConstMatriz
 
 class EightPuzzleSolver(object):
 
     #TICKET 4: variaveis globais python? como utilizá-las?
     _estado_objetivo = {'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '}
+    _movimentos_permitidos = ['11', '12', '13', '23', '33', '32', '31', '21', '22']
 
     #feio p caralho
     LINHA = 1
     COLUNA = 2
 
     def __init__(self, nodoInicial):
-        self.dicionario = {'Fronteiras': [nodoInicial], 'Visitados': []}
+        self.dicionario = {'Fronteiras': [nodoInicial, nodoInicial], 'Visitados': []}
 
     def __str__(self):
         return ""
@@ -23,8 +24,23 @@ class EightPuzzleSolver(object):
             if valor == ' ':
                 return chave, nodo
 
-    def descobrePossibilidadesDeMovimento(self, nodo):
-        pass
+    # MELHOROU PORRA
+    def descobrirPossibilidadesDeMovimento(self, nodo):
+        chave, nodo = self.descobrirPecaVazia(nodo)
+        possiveisMovimentos = []
+
+        for x in xrange(-1,2,2):
+            possiveisMovimentos.append(str(int(chave[self.LINHA]) + x) + str(chave[self.COLUNA]))
+            possiveisMovimentos.append(str(int(chave[self.LINHA]) + x) + str(chave[self.COLUNA]))
+            possiveisMovimentos.append(str(chave[self.LINHA]) + str(int(chave[self.COLUNA]) + x))
+            possiveisMovimentos.append(str(chave[self.LINHA]) + str(int(chave[self.COLUNA]) + x))
+
+        possiveisMovimentosComChave = []
+        for movimento in list(set(possiveisMovimentos)):
+            if movimento in self._movimentos_permitidos:
+                possiveisMovimentosComChave.append('a' + str(movimento))
+
+        print possiveisMovimentosComChave
 
     def criarEspacosDeEstado(self, nodo, chave):
         troca_posicoes = self.descobrePossibilidadesDeMovimento(nodo)
@@ -52,6 +68,6 @@ class EightPuzzleSolver(object):
 
 # NODO PERFEITO
 N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '})
+C = EightPuzzleSolver(N)
 
-# print C.dicionario['Fronteiras'][0].estadoTabuleiro.get('a12')
-C.isNodoObjetivo(C.dicionario['Fronteiras'][0].estadoTabuleiro)
+C.descobrePossibilidadesDeMovimento(C.dicionario['Fronteiras'][0].estadoTabuleiro)
