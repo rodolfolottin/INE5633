@@ -7,10 +7,8 @@ class EightPuzzleSolver(object):
     #TICKET 4: variaveis globais python? como utilizá-las?
     _estado_objetivo = {'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '}
     _movimentos_permitidos = ['11', '12', '13', '23', '33', '32', '31', '21', '22']
-
-    #feio p caralho
-    LINHA = 1
-    COLUNA = 2
+    _LINHA = 1
+    _COLUNA = 2
 
     def __init__(self, nodoInicial):
         self.dicionario = {'Fronteiras': [nodoInicial, nodoInicial], 'Visitados': []}
@@ -24,37 +22,33 @@ class EightPuzzleSolver(object):
             if valor == ' ':
                 return chave, nodo
 
-    # MELHOROU PORRA
     def descobrirPossibilidadesDeMovimento(self, nodo):
         chave, nodo = self.descobrirPecaVazia(nodo)
         possiveisMovimentos = []
 
         for x in xrange(-1,2,2):
-            possiveisMovimentos.append(str(int(chave[self.LINHA]) + x) + str(chave[self.COLUNA]))
-            possiveisMovimentos.append(str(int(chave[self.LINHA]) + x) + str(chave[self.COLUNA]))
-            possiveisMovimentos.append(str(chave[self.LINHA]) + str(int(chave[self.COLUNA]) + x))
-            possiveisMovimentos.append(str(chave[self.LINHA]) + str(int(chave[self.COLUNA]) + x))
+            possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + str(chave[self._COLUNA]))
+            possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + str(chave[self._COLUNA]))
+            possiveisMovimentos.append(str(chave[self._LINHA]) + str(int(chave[self._COLUNA]) + x))
+            possiveisMovimentos.append(str(chave[self._LINHA]) + str(int(chave[self._COLUNA]) + x))
 
-        possiveisMovimentosComChave = []
+        possiveisMovimentosIndexados = []
         for movimento in list(set(possiveisMovimentos)):
             if movimento in self._movimentos_permitidos:
-                possiveisMovimentosComChave.append('a' + str(movimento))
+                possiveisMovimentosIndexados.append('a' + str(movimento))
 
-        print possiveisMovimentosComChave
+        return possiveisMovimentosIndexados, chave
 
-    def criarEspacosDeEstado(self, nodo, chave):
-        troca_posicoes = self.descobrePossibilidadesDeMovimento(nodo)
+    def criarEspacosDeEstado(self, nodo):
+        possiveisMovimentosIndexados, chave = self.descobrirPossibilidadesDeMovimento(nodo)
         novosEspacosDeEstado = []
 
-        # colocar na classe talvez? passagem parametro?
-        chave = 'a11'
-
-        for posicao in troca_posicoes:
+        for posicao in possiveisMovimentosIndexados:
             nodoTemp = nodo.copy()
             nodoTemp[posicao], nodoTemp[chave] = nodoTemp[chave], nodoTemp[posicao]
             novosEspacosDeEstado.append(nodoTemp)
 
-        print novosEspacosDeEstado
+        return novosEspacosDeEstado
 
     def isNodoObjetivo(self, nodo):
         return True if cmp(nodo, self._estado_objetivo) == 0 else False
@@ -70,4 +64,4 @@ class EightPuzzleSolver(object):
 N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '})
 C = EightPuzzleSolver(N)
 
-C.descobrePossibilidadesDeMovimento(C.dicionario['Fronteiras'][0].estadoTabuleiro)
+print C.criarEspacosDeEstado(C.dicionario['Fronteiras'][0].estadoTabuleiro)
