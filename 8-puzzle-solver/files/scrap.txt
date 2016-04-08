@@ -1,0 +1,79 @@
+FUNÇÕES PRONTAS:
+isNodoObjetivo?
+procurarPecaVazia
+criarEspacosDeEstado
+descobrirPossibilidadesDeMovimento -- mal implementado
+
+TICKETS
+#TICKET 1: Organizar classe e atributos que serão dela. Buscar boas práticas, formatação.
+#TICKET 2: Analisar passagens parametro funções. Evitar encavalação repetida
+#TICKET 3: Implementar funções de heuristicas
+#TICKET 4: Função para ordernar lista de fronteiras
+#TICKET 5: Função para colocar nodos já visitados na lista de Visitados
+
+
+
+# se o vazio estiver no a11: a12, a21
+# se o vazio estiver em a12: a13, a11, a22
+# se o vazio estiver em a13: a23 e a12
+# se o vazio estiver em a21: a11, a22, a31
+# se o vazio estiver em a22: a12, a21, a23, a32
+# se o vazio estiver em a23: a13, a22, a33
+# se o vazio estiver em a31: a21, a32
+# se o vazio estiver em a32: a31, a22, a33
+# se o vazio estiver em a33: a23, a32
+
+# PADRÕES
+# a11 -> a[1+1][1] ou a[1][1+1]
+# a12 -> a[1][2+1] ou a[1][2-1] ou a[1+1][2]
+# a13 -> a[1][3-1] ou a[1+1][3]
+
+# a21 -> a[2+1][1] ou a[2-1][1] ou a[2][1+1]
+# a22 -> a[2-1][2] ou a[2][2-1] ou a[2][2+1] ou a[2+1][2]
+# a23 -> a[2-1][3] ou a[2+1][3] ou a[2][3-1]
+
+# a31 -> a[3-1][1] ou a[3][1+1]
+# a32 -> a[3][2-1] ou a[3-1][2] ou a[3][2+1]
+# a33 -> a[3-1][3] ou a[3][3-1]
+
+# Docstrings: Função utilizada para imprimir um espaço de estado do quebra cabeça de 8 peças
+# def printListAsMatrix(self):
+#     for i in xrange(0, 9, 3):
+#         print('- - - - - - - - - -')
+#         print('|  ' + str(self.G['Fronteiras'][0].estadoTabuleiro.[i]) + '  |  ' + str(self.G['Fronteiras'][0].estadoTabuleiro.[i+1]) + '  |  ' + str(self.G['Fronteiras'][0].estadoTabuleiro.[i+2]) + '  |')
+#     print('- - - - - - - - - -')
+
+# DÁ P DEIXAR ISSO EM UMA FUNCAO PELA MOR DE DEUS
+def descobrePossibilidadesDeMovimento(self, nodo):
+chave, nodo = self.descobrePosicaoDoQuadradoVazio(nodo)
+
+if chave[self.LINHA] == ConstMatriz.LINHA_UM:
+return self.retornaPossibilidadesPosicionamentoLinhaUm(chave, nodo)
+elif chave[self.LINHA] == ConstMatriz.LINHA_DOIS:
+return self.retornaPossibilidadesPosicionamentoLinhaDois(chave, nodo)
+elif chave[self.LINHA] == ConstMatriz.LINHA_TRES:
+return self.retornaPossibilidadesPosicionamentoLinhaTres(chave, nodo)
+
+def retornaPossibilidadesPosicionamentoLinhaUm(self, chave, nodo):
+if chave[self.COLUNA] == ConstMatriz.COLUNA_UM:
+return 'a12', 'a21'
+elif chave[self.COLUNA] == ConstMatriz.COLUNA_DOIS:
+return 'a13', 'a11', 'a22'
+elif chave[self.COLUNA] == ConstMatriz.COLUNA_TRES:
+return 'a23', 'a12'
+
+def retornaPossibilidadesPosicionamentoLinhaDois(self, chave, nodo):
+if chave[self.COLUNA] == ConstMatriz.COLUNA_UM:
+return 'a12', 'a22'
+elif chave[self.COLUNA] == ConstMatriz.COLUNA_DOIS:
+return 'a12', 'a21', 'a23', 'a32'
+elif chave[self.COLUNA] == ConstMatriz.COLUNA_TRES:
+return 'a13', 'a33', 'a22'
+
+def retornaPossibilidadesPosicionamentoLinhaTres(self, chave, nodo):
+if chave[self.COLUNA] == ConstMatriz.COLUNA_UM:
+return 'a21', 'a32'
+elif chave[self.COLUNA] == ConstMatriz.COLUNA_DOIS:
+return 'a31', 'a22', 'a33'
+elif chave[self.COLUNA] == ConstMatriz.COLUNA_TRES:
+return 'a23', 'a32'
