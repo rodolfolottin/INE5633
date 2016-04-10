@@ -4,7 +4,7 @@ from Const import ConstMatriz
 
 class EightPuzzleSolver(object):
 
-    _estado_objetivo = {'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '}
+    _nodo_objetivo = {'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '}
     _movimentos_permitidos = ['11', '12', '13', '23', '33', '32', '31', '21', '22']
     _LINHA = 1
     _COLUNA = 2
@@ -52,15 +52,30 @@ class EightPuzzleSolver(object):
     def isNodoObjetivo(self, nodo):
         return cmp(nodo, self._estado_objetivo) == 0
 
+    def heuristica_numeroDePecasForaDoLugar(self, nodo):
+        numPecas = 9
+
+        print nodo
+        print self._nodo_objetivo
+
+        for key, value in nodo.viewitems() & self._nodo_objetivo.viewitems():
+            numPecas = numPecas - 1
+
+        print numPecas
+
+    def algoritmoAEstrela(self):
+        pass
 
 # NODO ERRADO
-# N = Nodo({'a11': ' ', 'a12': 5, 'a13': 4, 'a21': 1, 'a22': 10, 'a23': 8, 'a31': 1, 'a32': 3, 'a33': 6})
+N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a22': ' ', 'a32': 4, 'a31': 6, 'a21': ' '})
 
 # NODO COM TUPLAS
 # N = Nodo({(1,1): 3, (1,2): 5, (1,3): 4, (2,1): 1, (2,2): ' ', (2,3): 8, (3,1): 1, (3,2): 3, (3,3): 6})
 
 # NODO PERFEITO
-N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '})
+# N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '})
 C = EightPuzzleSolver(N)
+# print C.dicionario['Fronteiras'][0].estadoTabuleiro
 
 print C.isNodoObjetivo(C.dicionario['Fronteiras'][0].estadoTabuleiro)
+C.heuristica_numeroDePecasForaDoLugar(C.dicionario['Fronteiras'][0].estadoTabuleiro)
