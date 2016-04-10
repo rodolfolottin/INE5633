@@ -55,9 +55,6 @@ class EightPuzzleSolver(object):
     def heuristica_numeroDePecasForaDoLugar(self, nodo):
         numPecas = 9
 
-        print nodo
-        print self._nodo_objetivo
-
         for key, value in nodo.viewitems() & self._nodo_objetivo.viewitems():
             numPecas = numPecas - 1
 
