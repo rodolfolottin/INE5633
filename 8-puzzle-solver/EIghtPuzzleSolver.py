@@ -1,7 +1,5 @@
 #coding: utf-8
 from Nodo import Nodo
-from Const import ConstMatriz
-
 import math
 
 class EightPuzzleSolver(object):
@@ -24,14 +22,14 @@ class EightPuzzleSolver(object):
                 return chave, nodo
 
     def descobrirPossibilidadesDeMovimento(self, nodo):
-        chave, nodo = self.descobrirPecaVazia(nodo)
+        chave, nodo = self._descobrirPecaVazia(nodo)
         possiveisMovimentos = []
 
         for x in (-1,1):
-            possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + str(chave[self._COLUNA]))
-            possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + str(chave[self._COLUNA]))
-            possiveisMovimentos.append(str(chave[self._LINHA]) + str(int(chave[self._COLUNA]) + x))
-            possiveisMovimentos.append(str(chave[self._LINHA]) + str(int(chave[self._COLUNA]) + x))
+            possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + chave[self._COLUNA])
+            possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + chave[self._COLUNA])
+            possiveisMovimentos.append(chave[self._LINHA] + str(int(chave[self._COLUNA]) + x))
+            possiveisMovimentos.append(chave[self._LINHA] + str(int(chave[self._COLUNA]) + x))
 
         possiveisMovimentosIndexados = []
         for movimento in list(set(possiveisMovimentos)):
@@ -98,12 +96,7 @@ class EightPuzzleSolver(object):
         print('- - - - - - - - - -')
 
 
-# NODO ERRADO
-# N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a22': ' ', 'a32': 4, 'a31': 6, 'a21': ' '})
-# NODO PERFEITO
-N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
-C = EightPuzzleSolver(N)
-# print C.dicionario['Fronteiras'][0].estadoTabuleiro
 
-print C.exibirEstadoDoNodo(C.dicionario['Fronteiras'][0].estadoTabuleiro)
-# C.heuristica_numeroDePecasForaDoLugar(C.dicionario['Fronteiras'][0].estadoTabuleiro)
+N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': ' ','a23': 4, 'a31': 7, 'a32': 5, 'a33': 6})
+C = EightPuzzleSolver(N)
+print C.descobrirPossibilidadesDeMovimento(C.dicionario['Fronteiras'][0].estadoTabuleiro)
