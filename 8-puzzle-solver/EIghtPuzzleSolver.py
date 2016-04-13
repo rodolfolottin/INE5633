@@ -31,12 +31,10 @@ class EightPuzzleSolver(object):
 
         for x in (-1,1):
             possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + chave[self._COLUNA])
-            possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + chave[self._COLUNA])
-            possiveisMovimentos.append(chave[self._LINHA] + str(int(chave[self._COLUNA]) + x))
             possiveisMovimentos.append(chave[self._LINHA] + str(int(chave[self._COLUNA]) + x))
 
         possiveisMovimentosIndexados = []
-        for movimento in list(set(possiveisMovimentos)):
+        for movimento in possiveisMovimentos:
             if movimento in self._movimentos_permitidos:
                 possiveisMovimentosIndexados.append('a' + str(movimento))
 
