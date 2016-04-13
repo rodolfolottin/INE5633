@@ -15,10 +15,6 @@ class EightPuzzleSolver(object):
     def __str__(self):
         return ""
 
-    # TODO (diz como quero que o objeto seja representado)
-    def __repr__(self):
-        pass
-
     #Docstring: Função utilizada para descobrir a chave da posição do quadrado vazio
     def _descobrirPecaVazia(self, nodo):
         for chave, valor in nodo.items():
@@ -92,15 +88,7 @@ class EightPuzzleSolver(object):
 
         return manhattanHeuristic
 
-    # Docstrings: Função utilizada para imprimir um espaço de estado do quebra cabeça de 8 peças
-    def exibirEstadoDoNodo(self, nodo):
-        j = 1
-
-        for i in (1, 2, 3):
-            print('- - - - - - - - - -')
-            print('|  ' + str(nodo['a' + str(i) + str(j)]) + '  |  ' + str(nodo['a' + str(i) + str(j + 1)]) + '  |  ' + str(nodo['a' + str(i) + str(j + 2)]) + '  |')
-        print('- - - - - - - - - -')
-
 # NODO PERFEITO
 N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
 C = EightPuzzleSolver(N)
+N.exibirEstadoDoNodo()
