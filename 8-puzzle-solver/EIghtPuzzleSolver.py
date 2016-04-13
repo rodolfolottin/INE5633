@@ -15,6 +15,10 @@ class EightPuzzleSolver(object):
     def __str__(self):
         return ""
 
+    # TODO (diz como quero que o objeto seja representado)
+    def __repr__(self):
+        pass
+
     #Docstring: Função utilizada para descobrir a chave da posição do quadrado vazio
     def _descobrirPecaVazia(self, nodo):
         for chave, valor in nodo.items():
@@ -62,6 +66,10 @@ class EightPuzzleSolver(object):
 
         return chaves
 
+    # avaliar possíveis melhores soluções
+    def _ordenarFronteiras(self):
+        self.dicionario['Fronteiras'].sort(key=lambda nodo: nodo.pesoHeuristica, reverse=True)
+
     def heuristica_numeroDePecasForaDoLugar(self, nodo):
         numPecasHeuristic = 9
 
@@ -95,8 +103,6 @@ class EightPuzzleSolver(object):
             print('|  ' + str(nodo['a' + str(i) + str(j)]) + '  |  ' + str(nodo['a' + str(i) + str(j + 1)]) + '  |  ' + str(nodo['a' + str(i) + str(j + 2)]) + '  |')
         print('- - - - - - - - - -')
 
-
-
-N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': ' ','a23': 4, 'a31': 7, 'a32': 5, 'a33': 6})
+# NODO PERFEITO
+N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
 C = EightPuzzleSolver(N)
-print C.descobrirPossibilidadesDeMovimento(C.dicionario['Fronteiras'][0].estadoTabuleiro)
