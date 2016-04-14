@@ -1,4 +1,5 @@
 #coding: utf-8
+
 from Nodo import Nodo
 import math
 
@@ -12,14 +13,24 @@ class EightPuzzleSolver(object):
     def __init__(self, nodoInicial):
         self.dicionario = {'Fronteiras': [nodoInicial], 'Visitados': []}
 
-    def __str__(self):
-        return ""
-
     #Docstring: Função utilizada para descobrir a chave da posição do quadrado vazio
     def _descobrirPecaVazia(self, nodo):
         for chave, valor in nodo.items():
             if valor == ' ':
                 return chave, nodo
+
+    def _gerarChavesDicionario(self):
+        chaves = []
+
+        for i in (1,2,3):
+            for j in (1,2,3):
+                # montando chave de acordo com o index dict
+                chaves.append('a' + str(i) + str(j))
+
+        return chaves
+
+    def _ordenarFronteiras(self):
+        self.dicionario['Fronteiras'].sort(key=lambda nodo: nodo.pesoHeuristica, reverse=True)
 
     def descobrirPossibilidadesDeMovimento(self, nodo):
         chave, nodo = self._descobrirPecaVazia(nodo)
@@ -50,19 +61,9 @@ class EightPuzzleSolver(object):
     def isNodoObjetivo(self, nodo):
         return cmp(nodo, self._nodo_objetivo) == 0
 
-    def _gerarChavesDicionario(self):
-        chaves = []
-
-        for i in (1,2,3):
-            for j in (1,2,3):
-                # montando chave de acordo com o index dict
-                chaves.append('a' + str(i) + str(j))
-
-        return chaves
-
-    # avaliar possíveis melhores soluções
-    def _ordenarFronteiras(self):
-        self.dicionario['Fronteiras'].sort(key=lambda nodo: nodo.pesoHeuristica, reverse=True)
+    def isNodoJaVisitado(self, nodo):
+        for nodoVisitado in self.dicionario['Visitados']:
+            return cmp(nodo.estadoTabuleiro, nodoVisitado.estadoTabuleiro) == 0
 
     def heuristica_numeroDePecasForaDoLugar(self, nodo):
         numPecasHeuristic = 9
@@ -90,5 +91,9 @@ class EightPuzzleSolver(object):
 
 # NODO PERFEITO
 N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
+N.profundidade = 2
+N2 = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
+N2.profundidade = 3
 C = EightPuzzleSolver(N)
-N.exibirEstadoDoNodo()
+C.dicionario['Visitados'].append(N2)
+print C.isNodoJaVisitado(N)
