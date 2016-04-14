@@ -1,7 +1,7 @@
 #coding: utf-8
 
 from Nodo import Nodo
-import math
+from Heuristica import Heuristica
 
 class EightPuzzleSolver(object):
 
@@ -18,16 +18,6 @@ class EightPuzzleSolver(object):
         for chave, valor in nodo.items():
             if valor == ' ':
                 return chave, nodo
-
-    def _gerarChavesDicionario(self):
-        chaves = []
-
-        for i in (1,2,3):
-            for j in (1,2,3):
-                # montando chave de acordo com o index dict
-                chaves.append('a' + str(i) + str(j))
-
-        return chaves
 
     def _ordenarFronteiras(self):
         self.dicionario['Fronteiras'].sort(key=lambda nodo: nodo.pesoHeuristica, reverse=True)
@@ -65,30 +55,6 @@ class EightPuzzleSolver(object):
         for nodoVisitado in self.dicionario['Visitados']:
             return cmp(nodo.estadoTabuleiro, nodoVisitado.estadoTabuleiro) == 0
 
-    def heuristica_numeroDePecasForaDoLugar(self, nodo):
-        numPecasHeuristic = 9
-
-        for chave, valor in nodo.viewitems() & self._nodo_objetivo.viewitems():
-            numPecasHeuristic = numPecasHeuristic - 1
-
-        return numPecasHeuristic
-
-    def heuristica_distanciaDeManhattan(self, nodo):
-        manhattanHeuristic = 0
-        # swap chave e valor dict
-        swap_nodo_objetivo = dict((v,k) for k,v in self._nodo_objetivo.iteritems())
-
-        for chave in self._gerarChavesDicionario():
-            if nodo[chave] != self._nodo_objetivo[chave]:
-                pecaObjtv = swap_nodo_objetivo[nodo[chave]]
-                # conversoes pois a chave ('aij') vem como string
-                linha = int(chave[self._LINHA])
-                coluna = int(chave[self._COLUNA])
-                distParaPosicaoCorreta = int(math.fabs(int(pecaObjtv[self._LINHA]) - linha)) +int(math.fabs(int(pecaObjtv[self._COLUNA]) - coluna))
-                manhattanHeuristic = manhattanHeuristic + distParaPosicaoCorreta
-
-        return manhattanHeuristic
-
 # NODO PERFEITO
 N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
 N.profundidade = 2
@@ -96,4 +62,6 @@ N2 = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7
 N2.profundidade = 3
 C = EightPuzzleSolver(N)
 C.dicionario['Visitados'].append(N2)
-print C.isNodoJaVisitado(N)
+# print C._gerarChavesDicionario()
+_nodo_objetivo = {'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '}
+print Heuristica.distanciaDeManhattan(N.estadoTabuleiro, _nodo_objetivo)
