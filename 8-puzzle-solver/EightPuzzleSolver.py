@@ -10,8 +10,8 @@ class EightPuzzleSolver(object):
     _LINHA = 1
     _COLUNA = 2
 
-    def __init__(self, nodoInicial):
-        self.dicionario = {'Fronteiras': [nodoInicial], 'Visitados': []}
+    def __init__(self):
+        self.dicionario = {'Fronteiras': [], 'Visitados': []}
 
     #Docstring: Função utilizada para descobrir a chave da posição do quadrado vazio
     def _descobrirPecaVazia(self, nodo):
@@ -21,6 +21,10 @@ class EightPuzzleSolver(object):
 
     def _ordenarFronteiras(self):
         self.dicionario['Fronteiras'].sort(key=lambda nodo: nodo.pesoHeuristica, reverse=True)
+
+    def adicionarNodoListaVisitados(self, nodo):
+        self.dicionario['Fronteiras'].remove(nodo)
+        self.dicionario['Visitados'].append(nodo)
 
     def descobrirPossibilidadesDeMovimento(self, nodo):
         chave, nodo = self._descobrirPecaVazia(nodo)
