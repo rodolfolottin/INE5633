@@ -69,13 +69,16 @@ class EightPuzzleSolver(object):
     def computarHeuristicas(self, nodo, nodoObjetivo):
         return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo) + Heuristica.numeroDePecasForaDoLugar(nodo, self._nodo_objetivo)
 
+    def retornaProximoFronteira(self):
+        return self.dicionario['Fronteiras'][0]
+
     def AStarAlgorithm(self, nodoAnalisado, nodoInicial = False):
         if nodoInicial:
             self.dicionario['Fronteiras'].append(nodoAnalisado)
-        nodoAnalisado = self.dicionario['Fronteiras'][0]
         if self.isNodoObjetivo(nodoAnalisado):
             return self.exibirRelatorio(nodoAnalisado)
         self.setarNodoListaVisitados(nodoAnalisado)
         for espacoEstado in self.criarEspacosDeEstado(nodoAnalisado):
             self.calcularHeuristicas(espacoEstado, nodoAnalisado)
         self._ordenarFronteiras()
+        self.AStarAlgorithm(self.retornaProximoFronteira(
