@@ -28,6 +28,7 @@ class Heuristica(object):
                 linha = int(chave[LINHA])
                 coluna = int(chave[COLUNA])
                 distParaPosicaoCorreta = int(math.fabs(int(pecaObjtv[LINHA]) - linha)) +int(math.fabs(int(pecaObjtv[COLUNA]) - coluna))
-                manhattanHeuristic = manhattanHeuristic + distParaPosicaoCorreta
+                manhattanHeuristic += distParaPosicaoCorreta
+
 
         return manhattanHeuristic

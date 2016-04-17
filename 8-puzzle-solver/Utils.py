@@ -15,7 +15,7 @@ class Utils(object):
 
         tabuleiro = nodoAnalisado.estadoTabuleiro
         profundidade = nodoAnalisado.profundidade
-        heuristicaTotal = nodoAnalisado.heuristicaCaminho()
+        heuristicaTotal = nodoAnalisado.heuristicaCaminho() + profundidade
 
         for i in (1, 2, 3):
             print('- - - - - - - - - -')

@@ -11,7 +11,7 @@ class Nodo(object):
     def __repr__(self):
         return '{}: {} {} {} {}'.format(self.__class__.__name__,
                                   'Estado Tabuleiro: ' + str(self.estadoTabuleiro),
-                                  'pesoHeuristica: ' + str(self.pesoHeuristica),
+                                  'Peso Heuristica: ' + str(self.pesoHeuristica),
                                   'Profundidade: ' + str(self.profundidade),
                                   'Nodo pai: ' + str(self.nodoPai))
 
