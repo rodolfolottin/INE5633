@@ -8,6 +8,8 @@ class Utils(object):
         while nodoAnalisado != None:
             Utils.exibirEstadoDoNodo(nodoAnalisado)
             nodoAnalisado = nodoAnalisado.nodoPai
+            print '/ \ '
+            print ' | '
 
     @staticmethod
     def exibirEstadoDoNodo(nodoAnalisado):
@@ -15,11 +17,13 @@ class Utils(object):
 
         tabuleiro = nodoAnalisado.estadoTabuleiro
         profundidade = nodoAnalisado.profundidade
-        heuristicaTotal = nodoAnalisado.heuristicaCaminho() + profundidade
+        heuristicaTotal = nodoAnalisado.heuristicaCaminho()
+        pesoHeuristica = nodoAnalisado.pesoHeuristica
 
         for i in (1, 2, 3):
             print('- - - - - - - - - -')
             print('|  ' + str(tabuleiro['a' + str(i) + str(j)]) + '  |  ' + str(tabuleiro['a' + str(i) + str(j + 1)]) + '  |  ' + str(tabuleiro['a' + str(i) + str(j + 2)]) + '  |')
         print('- - - - - - - - - -')
         print('Profundidade: ' + str(profundidade))
+        print('Peso Heurística: ' + str(pesoHeuristica))
         print('Heurística Total: ' + str(heuristicaTotal))
