@@ -2,8 +2,6 @@
 
 class Nodo(object):
 
-    heuristicaCaminho = self.pesoHeuristica + self.profundidade
-
     def __init__(self, estadoTabuleiro, pesoHeuristica, profundidade, nodoPai):
         self.estadoTabuleiro = estadoTabuleiro
         self.pesoHeuristica = pesoHeuristica
@@ -12,7 +10,9 @@ class Nodo(object):
 
     def __repr__(self):
         return '{}: {} {} {} {}'.format(self.__class__.__name__,
-                                  self.estadoTabuleiro,
-                                  self.pesoHeuristica,
-                                  self.profundidade,
-                                  self.nodoPai)
+                                  'Estado Tabuleiro: ' + str(self.estadoTabuleiro),
+                                  'pesoHeuristica: ' + str(self.pesoHeuristica),
+                                  'Profundidade: ' + str(self.profundidade),
+                                  'Nodo pai: ' + str(self.nodoPai))
+    def heuristicaCaminho(self):
+      return self.pesoHeuristica + self.profundidade
