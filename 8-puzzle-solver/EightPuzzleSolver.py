@@ -65,7 +65,7 @@ class EightPuzzleSolver(object):
         nodoPai = nodoAnalisado
 
         novoNovo = Nodo(espacoEstado, 0, profundidade, nodoPai)
-        novoNodo.pesoHeuristica = self.computarHeuristicas(novoNodo, self._nodo_objetivo)
+        novoNodo.pesoHeuristica = self.computarHeuristicas(novoNodo.estadoTabuleiro, self._nodo_objetivo)
 
     def computarHeuristicas(self, nodo, nodoObjetivo):
         return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo) + Heuristica.numeroDePecasForaDoLugar(nodo, self._nodo_objetivo)
