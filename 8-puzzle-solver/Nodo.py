@@ -14,5 +14,6 @@ class Nodo(object):
                                   'pesoHeuristica: ' + str(self.pesoHeuristica),
                                   'Profundidade: ' + str(self.profundidade),
                                   'Nodo pai: ' + str(self.nodoPai))
+
     def heuristicaCaminho(self):
-      return self.pesoHeuristica + self.profundidade
+        return self.pesoHeuristica + self.profundidade
