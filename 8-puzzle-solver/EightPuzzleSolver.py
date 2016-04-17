@@ -2,6 +2,7 @@
 
 from Nodo import Nodo
 from Heuristica import Heuristica
+from Utils import Utils
 
 class EightPuzzleSolver(object):
 
@@ -76,9 +77,9 @@ class EightPuzzleSolver(object):
         if nodoInicial:
             self.dicionario['Fronteiras'].append(nodoAnalisado)
         if self.isNodoObjetivo(nodoAnalisado):
-            return self.exibirRelatorio(nodoAnalisado)
+            return Utils.exibirRelatorio(nodoAnalisado)
         self.setarNodoListaVisitados(nodoAnalisado)
         for espacoEstado in self.criarEspacosDeEstado(nodoAnalisado):
             self.calcularHeuristicas(espacoEstado, nodoAnalisado)
         self._ordenarFronteiras()
-        self.AStarAlgorithm(self.retornaProximoFronteira(
+        self.AStarAlgorithm(self.retornaProximoFronteira)
