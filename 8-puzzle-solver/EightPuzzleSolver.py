@@ -58,14 +58,3 @@ class EightPuzzleSolver(object):
     def isNodoJaVisitado(self, nodo):
         for nodoVisitado in self.dicionario['Visitados']:
             return cmp(nodo.estadoTabuleiro, nodoVisitado.estadoTabuleiro) == 0
-
-# NODO PERFEITO
-N = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
-N.profundidade = 2
-N2 = Nodo({'a11': 1, 'a12': 2, 'a13': 3, 'a21': 8, 'a22': 4,'a23': ' ', 'a31': 7, 'a32': 5, 'a33': 6})
-N2.profundidade = 3
-C = EightPuzzleSolver(N)
-C.dicionario['Visitados'].append(N2)
-# print C._gerarChavesDicionario()
-_nodo_objetivo = {'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '}
-print Heuristica.distanciaDeManhattan(N.estadoTabuleiro, _nodo_objetivo)
