@@ -8,8 +8,8 @@ class Utils(object):
         while nodoAnalisado != None:
             Utils.exibirEstadoDoNodo(nodoAnalisado)
             nodoAnalisado = nodoAnalisado.nodoPai
-            print '/ \ '
-            print ' | '
+            print '      / \ '
+            print '       | '
 
     @staticmethod
     def exibirEstadoDoNodo(nodoAnalisado):

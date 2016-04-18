@@ -1,5 +1,4 @@
 #coding: utf-8
-
 from Nodo import Nodo
 from Heuristica import Heuristica
 from Utils import Utils as utils
@@ -79,13 +78,14 @@ class EightPuzzleSolver(object):
     def computarHeuristicas(self, nodo, nodoObjetivo):
         return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo) + Heuristica.numeroDePecasForaDoLugar(nodo, self._nodo_objetivo)
 
-    def AStarAlgorithm(self, nodoAnalisado, nodoInicial = False):
+    def AStarAlgorithm(self, nodo, nodoInicial = False):
         if nodoInicial:
-            self.dicionario['Fronteiras'].append(nodoAnalisado)
-        if self.isNodoObjetivo(nodoAnalisado.estadoTabuleiro):
-            return utils.exibirRelatorio(nodoAnalisado)
-        self._adicionarNodoListaVisitados(nodoAnalisado)
-        for espacoEstado in self.criarEspacosDeEstado(nodoAnalisado.estadoTabuleiro):
-            self.configurarNodo(espacoEstado, nodoAnalisado)
-        self._ordenarFronteiras()
-        self.AStarAlgorithm(self._retornaProximoFronteira())
+            self.dicionario['Fronteiras'].append(nodo)
+        while self.dicionario['Fronteiras']:
+            nodoAnalisado = self.dicionario['Fronteiras'][0]
+            if self.isNodoObjetivo(nodoAnalisado.estadoTabuleiro):
+                return utils.exibirRelatorio(nodoAnalisado)
+            self._adicionarNodoListaVisitados(nodoAnalisado)
+            for espacoEstado in self.criarEspacosDeEstado(nodoAnalisado.estadoTabuleiro):
+                self.configurarNodo(espacoEstado, nodoAnalisado)
+            self._ordenarFronteiras()
