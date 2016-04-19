@@ -11,7 +11,8 @@ class EightPuzzleSolver(object):
     _COLUNA = 2
 
     def __init__(self):
-        self.dicionario = {'Fronteiras': [], 'Visitados': []}
+        self.fronteiras = []
+        self.visitados = []
 
     #Docstring: Função utilizada para descobrir a chave da posição do quadrado vazio
     def _descobrirPecaVazia(self, nodo):
@@ -19,25 +20,23 @@ class EightPuzzleSolver(object):
             if valor == ' ':
                 return chave, nodo
 
-    def _ordenarFronteiras(self):
-        self.dicionario['Fronteiras'].sort(key=lambda nodo: nodo.heuristicaCaminho(), reverse=False)
-
-    def _adicionarNodoListaVisitados(self, nodo):
-        self.dicionario['Fronteiras'].remove(nodo)
-        self.dicionario['Visitados'].append(nodo)
-
-    def _adicionarNodoListaFronteiras(self, nodo):
-        self.dicionario['Fronteiras'].append(nodo)
+    def _adicionarNodoListaVisitadosRemoverListaFronteiras(self, nodo):
+        self.fronteiras.remove(nodo)
+        self.visitados.append(nodo)
 
     def _retornaProximoFronteira(self):
-        return self.dicionario['Fronteiras'][0]
+        return min(self.fronteiras, key=lambda nodo: nodo.heuristicaCaminho())
 
     def isNodoObjetivo(self, nodo):
-        return cmp(nodo, self._nodo_objetivo) == 0
+        if nodo.estadoTabuleiro == self._nodo_objetivo:
+            return True
+        return False
 
     def isNodoJaVisitado(self, nodo):
-        for nodoVisitado in self.dicionario['Visitados']:
-            return cmp(nodo.estadoTabuleiro, nodoVisitado.estadoTabuleiro) == 0
+        for nodoVisitado in self.visitados:
+            if nodo.estadoTabuleiro == nodoVisitado.estadoTabuleiro:
+                return True
+        return False
 
     def descobrirPossibilidadesDeMovimento(self, nodo):
         chave, nodo = self._descobrirPecaVazia(nodo)
@@ -71,21 +70,20 @@ class EightPuzzleSolver(object):
 
         novoNodo = Nodo(espacoEstado, 0, profundidade, nodoPai)
 
-        if not self.isNodoJaVisitado(novoNodo):
-            novoNodo.pesoHeuristica = self.computarHeuristicas(novoNodo.estadoTabuleiro, self._nodo_objetivo)
-            self._adicionarNodoListaFronteiras(novoNodo)
+        if self.isNodoJaVisitado(novoNodo) == False:
+            novoNodo.pesoHeuristica = self.computarHeuristicas(novoNodo.estadoTabuleiro)
+            self.fronteiras.append(novoNodo)
 
-    def computarHeuristicas(self, nodo, nodoObjetivo):
-        return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo) + Heuristica.numeroDePecasForaDoLugar(nodo, self._nodo_objetivo)
+    def computarHeuristicas(self, nodo):
+        return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo)
 
     def AStarAlgorithm(self, nodo, nodoInicial = False):
         if nodoInicial:
-            self.dicionario['Fronteiras'].append(nodo)
-        while self.dicionario['Fronteiras']:
-            nodoAnalisado = self.dicionario['Fronteiras'][0]
-            if self.isNodoObjetivo(nodoAnalisado.estadoTabuleiro):
+            self.fronteiras.append(nodo)
+        while self.fronteiras:
+            nodoAnalisado = self._retornaProximoFronteira()
+            if self.isNodoObjetivo(nodoAnalisado):
                 return utils.exibirRelatorio(nodoAnalisado)
-            self._adicionarNodoListaVisitados(nodoAnalisado)
+            self._adicionarNodoListaVisitadosRemoverListaFronteiras(nodoAnalisado)
             for espacoEstado in self.criarEspacosDeEstado(nodoAnalisado.estadoTabuleiro):
                 self.configurarNodo(espacoEstado, nodoAnalisado)
-            self._ordenarFronteiras()
