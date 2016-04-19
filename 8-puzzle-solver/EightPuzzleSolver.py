@@ -9,6 +9,7 @@ class EightPuzzleSolver(object):
     _movimentos_permitidos = ['11', '12', '13', '21', '22',  '23', '31', '32', '33']
     _LINHA = 1
     _COLUNA = 2
+    _len_listafronteiras = 0
 
     def __init__(self):
         self.fronteiras = []
@@ -76,6 +77,7 @@ class EightPuzzleSolver(object):
 
     def computarHeuristicas(self, nodo):
         return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo)
+        # return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo) + Heuristica.numeroDePecasForaDoLugar(nodo, self._nodo_objetivo)
 
     def AStarAlgorithm(self, nodo, nodoInicial = False):
         if nodoInicial:
@@ -83,7 +85,11 @@ class EightPuzzleSolver(object):
         while self.fronteiras:
             nodoAnalisado = self._retornaProximoFronteira()
             if self.isNodoObjetivo(nodoAnalisado):
-                return utils.exibirRelatorio(nodoAnalisado)
+                return utils.exibirRelatorio(nodoAnalisado, self._len_listafronteiras)
             self._adicionarNodoListaVisitadosRemoverListaFronteiras(nodoAnalisado)
             for espacoEstado in self.criarEspacosDeEstado(nodoAnalisado.estadoTabuleiro):
                 self.configurarNodo(espacoEstado, nodoAnalisado)
+            self.analisarExpansaoListaFronteiras()
+
+    def analisarExpansaoListaFronteiras(self):
+        self._len_listafronteiras = max(self._len_listafronteiras, len(self.fronteiras))

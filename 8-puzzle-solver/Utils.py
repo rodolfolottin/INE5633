@@ -3,13 +3,14 @@
 class Utils(object):
 
     @staticmethod
-    def exibirRelatorio(nodoAnalisado):
+    def exibirRelatorio(nodoAnalisado, len_fronteiras):
 
         while nodoAnalisado != None:
             Utils.exibirEstadoDoNodo(nodoAnalisado)
             nodoAnalisado = nodoAnalisado.nodoPai
             print '      / \ '
             print '       | '
+        print 'Máxima expansão Lista de Fronteiras: ', len_fronteiras
 
     @staticmethod
     def exibirEstadoDoNodo(nodoAnalisado):
