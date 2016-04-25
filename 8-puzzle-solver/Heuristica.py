@@ -1,5 +1,6 @@
 import math
 
+
 class Heuristica(object):
 
     @staticmethod

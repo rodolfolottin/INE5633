@@ -1,11 +1,12 @@
-#coding: utf-8
+# coding: utf-8
+
 
 class Utils(object):
 
     @staticmethod
     def exibirRelatorio(nodoAnalisado, len_fronteiras):
 
-        while nodoAnalisado != None:
+        while nodoAnalisado is not None:
             Utils.exibirEstadoDoNodo(nodoAnalisado)
             nodoAnalisado = nodoAnalisado.nodoPai
             print '      / \ '

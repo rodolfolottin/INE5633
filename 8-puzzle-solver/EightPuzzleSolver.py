@@ -1,7 +1,8 @@
-#coding: utf-8
+# coding: utf-8
 from Nodo import Nodo
 from Heuristica import Heuristica
 from Utils import Utils as utils
+
 
 class EightPuzzleSolver(object):
 
