@@ -4,9 +4,12 @@
 class Nodo(object):
 
     """docstring for Nodo"""
-    def __init__(self, repre, index):
+    def __init__(self, repre, index, heuristica, utilidade):
         self._repre = repre
         self._index = index
+        self._heuristica = heuristica
+        self._utilidade = utilidade
+        self._isNodoFolha = False
 
     def __repr__(self):
         return '{}: {} {}'.format(self.__class__.__name__,
