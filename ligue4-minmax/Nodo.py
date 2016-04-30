@@ -12,5 +12,9 @@ class Nodo(object):
         self._isNodoFolha = False
 
     def __repr__(self):
-        return '{}: {} {}'.format(self.__class__.__name__,
-                                  'Índice de substituição:', self._index)
+        return '{}: {} {} {} {} {} {}'.format(self.__class__.__name__,
+                                     'Índice de substituição:', self._index,
+                                     'Repr:', self._repre,
+                                     'Heurística:', self._heuristica,
+                                     'Utilidade:', self._utilidade,
+                                     'isNodoFolha:', self._isNodoFolha)
