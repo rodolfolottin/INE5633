@@ -1,4 +1,5 @@
 # coding: utf-8
+from Utils import Utils
 import argparse
 from random import randint
 
@@ -12,7 +13,7 @@ class Ligue4(object):
         self._posicoesDisponiveis = list()
         self._jogadorDaVez = 'Jogador'
 
-        if randint(0, 1) == 0:
+        if randint(0, 2) == 0:
             self._jogadorDaVez = 'Computador'
 
     def _profundidadeModo(self, dificuldade):
@@ -25,24 +26,27 @@ class Ligue4(object):
 
     # ToDo
     def _descobrePosicoesDisponiveisTabuleiro(self):
+        print 'self._jogadorDaVez', self._jogadorDaVez
         self._posicoesDisponiveis = list()
         for linha in self._tabuleiro:
             print linha
 
     def _atualizaJogada(self):
-        self._descobrePosicoesDisponiveisTabuleiro()
         if self._jogadorDaVez == 'Computador':
             self._jogadorDaVez = 'Jogador'
         else:
             self._jogadorDaVez = 'Computador'
+        self._descobrePosicoesDisponiveisTabuleiro()
 
     def run(self):
-        print 'self._jogadorDaVez', self._jogadorDaVez
         self._descobrePosicoesDisponiveisTabuleiro()
 
         while True:
+            print '\t \t \t \t \t \t \t \t ##########################################################################'
             if self._jogadorDaVez == 'Jogador':
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
+
+                Utils.printEstadoTabuleiro(self._tabuleiro)
 
                 try:
                     jogada = int(raw_input(input_msg))
@@ -56,7 +60,7 @@ class Ligue4(object):
                 # Acabou jogada, passa vez
                 self._atualizaJogada()
             else:
-                'Print Rodolfo'
+                Utils.printEstadoTabuleiro(self._tabuleiro)
                 # Acabou jogada, passa vez
                 self._atualizaJogada()
 
