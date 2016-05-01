@@ -10,7 +10,7 @@ class Ligue4(object):
         self._tabuleiro = [[None for x in xrange(6)] for y in xrange(7)]
         self._profundidade = self._profundidadeModo(modo)
         self._posicoesDisponiveis = None
-        self._jogadorDaVez = None
+        self._jogadorDaVez = 'Jogador'
 
         if randint(0, 1) == 0:
             self._jogadorDaVez = 'Computador'
@@ -24,15 +24,15 @@ class Ligue4(object):
             self._profundidade = 2
 
     # ToDo implementar função
-    def _descobrePosicoesDisponiveisTabuleiro(self):
-        for linha in self._tabuleiro:
-            print linha
+    # def _descobrePosicoesDisponiveisTabuleiro(self):
+    #     for linha in self._tabuleiro:
+    #         print linha
 
     def _atualizaJogada(self):
-        self._descobrePosicoesDisponiveis()
+        self._descobrePosicoesDisponiveisTabuleiro()
         # se jogadorDaVez for Computador, passa a ser Player, se não passa a ser Computador
         if self._jogadorDaVez == 'Computador':
-            self._jogadorDaVez = 'Player'
+            self._jogadorDaVez = 'Jogador'
         else:
             self._jogadorDaVez = 'Computador'
 
@@ -51,7 +51,6 @@ class Ligue4(object):
                     print 'A posição fornecida não é um número fornecido não é um número'
                     jogada = None
                     continue
-
                 # Acabou jogada, passa vez
                 self._atualizaJogada()
             else:
