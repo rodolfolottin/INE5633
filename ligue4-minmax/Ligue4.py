@@ -26,9 +26,7 @@ class Ligue4(object):
     # ToDo implementar função
     def _descobrePosicoesDisponiveisTabuleiro(self):
         for linha in self._tabuleiro:
-            for coluna in linha:
-                print coluna
-                self._posicoesDisponiveis.append(coluna.count(not None))
+            print linha
 
     def _atualizaJogada(self):
         self._descobrePosicoesDisponiveis()
@@ -55,11 +53,11 @@ class Ligue4(object):
                     continue
 
                 # Acabou jogada, passa vez
-                self._atualizaJogo(self._jogadorDaVez)
+                self._atualizaJogada(self._jogadorDaVez)
             else:
                 'Print Rodolfo'
                 # Acabou jogada, passa vez
-                self._atualizaJogo(self._jogadorDaVez)
+                self._atualizaJogada(self._jogadorDaVez)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs Computador). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas do computador.')
