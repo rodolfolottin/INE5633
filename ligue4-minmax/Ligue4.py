@@ -53,11 +53,11 @@ class Ligue4(object):
                     continue
 
                 # Acabou jogada, passa vez
-                self._atualizaJogada(self._jogadorDaVez)
+                self._atualizaJogada()
             else:
                 'Print Rodolfo'
                 # Acabou jogada, passa vez
-                self._atualizaJogada(self._jogadorDaVez)
+                self._atualizaJogada()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs Computador). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas do computador.')
