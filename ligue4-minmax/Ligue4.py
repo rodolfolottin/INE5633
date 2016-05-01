@@ -9,7 +9,7 @@ class Ligue4(object):
         self._modo = modo
         self._tabuleiro = [[None for x in xrange(6)] for y in xrange(7)]
         self._profundidade = self._profundidadeModo(modo)
-        self._posicoesDisponiveis = None
+        self._posicoesDisponiveis = list()
         self._jogadorDaVez = 'Jogador'
 
         if randint(0, 1) == 0:
@@ -23,30 +23,32 @@ class Ligue4(object):
         else:
             self._profundidade = 2
 
-    # ToDo implementar função
-    # def _descobrePosicoesDisponiveisTabuleiro(self):
-    #     for linha in self._tabuleiro:
-    #         print linha
+    # ToDo
+    def _descobrePosicoesDisponiveisTabuleiro(self):
+        self._posicoesDisponiveis = list()
+        for linha in self._tabuleiro:
+            print linha
 
     def _atualizaJogada(self):
         self._descobrePosicoesDisponiveisTabuleiro()
-        # se jogadorDaVez for Computador, passa a ser Player, se não passa a ser Computador
         if self._jogadorDaVez == 'Computador':
             self._jogadorDaVez = 'Jogador'
         else:
             self._jogadorDaVez = 'Computador'
 
     def run(self):
+        print 'self._jogadorDaVez', self._jogadorDaVez
         self._descobrePosicoesDisponiveisTabuleiro()
 
         while True:
             if self._jogadorDaVez == 'Jogador':
-                input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis)
+                input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
 
                 try:
                     jogada = int(raw_input(input_msg))
                     if jogada not in self._posicoesDisponiveis:
                         print 'A posição fornecida não é uma das posições disponíveis'
+                        continue
                 except ValueError:
                     print 'A posição fornecida não é um número fornecido não é um número'
                     jogada = None
