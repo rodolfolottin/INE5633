@@ -42,7 +42,7 @@ class Ligue4(object):
         self._descobrePosicoesDisponiveisTabuleiro()
 
         while True:
-            print '\t \t \t \t \t \t \t \t ##########################################################################'
+            print '\t \t \t \t \t \t \t \t###########################################'
             if self._jogadorDaVez == 'Jogador':
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
 
