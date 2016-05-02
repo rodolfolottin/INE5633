@@ -6,46 +6,39 @@ from random import randint
 
 class Ligue4(object):
 
-    _VAZIO = '    '
+    _pecaVazia = '     '
 
-    def __init__(self, modo):
-        self._modo = modo
-        self._tabuleiro = [[self._VAZIO for x in xrange(6)] for y in xrange(7)]
-        self._profundidade = self._profundidadeModo(modo)
-        self._posicoesDisponiveis = list()
-        self._jogadorDaVez = 'Jogador'
+    def __init__(self, modo, nomeJogador):
+        self._tabuleiro = [[self._pecaVazia for x in xrange(6)] for y in xrange(7)]
+        self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
+        self._jogador = nomeJogador
 
         if randint(0, 2) == 0:
             self._jogadorDaVez = 'Computador'
+        else:
+            self._jogadorDaVez = self._jogador
 
-    def _profundidadeModo(self, dificuldade):
-        if dificuldade == 'dificil':
+        if modo == 'dificil':
             self._profundidade = 6
-        elif dificuldade == 'normal':
+        elif modo == 'normal':
             self._profundidade = 4
         else:
             self._profundidade = 2
 
-    # ToDo
-    def _descobrePosicoesDisponiveisTabuleiro(self):
-        print 'self._jogadorDaVez', self._jogadorDaVez
-        self._posicoesDisponiveis = list()
-        for linha in self._tabuleiro:
-            print linha
-
     def _atualizaJogada(self):
         if self._jogadorDaVez == 'Computador':
-            self._jogadorDaVez = 'Jogador'
+            self._jogadorDaVez = self._jogador
         else:
             self._jogadorDaVez = 'Computador'
-        self._descobrePosicoesDisponiveisTabuleiro()
+        self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
 
     def run(self):
-        self._descobrePosicoesDisponiveisTabuleiro()
+        print '\t \t \t \t \t \t \t ##############################################################'
+        self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
 
         while True:
-            print '\t \t \t \t \t \t \t #########################################################'
-            if self._jogadorDaVez == 'Jogador':
+            print 'Jogador da vez:', self._jogadorDaVez
+            if self._jogadorDaVez == self._jogador:
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
 
                 Utils.printEstadoTabuleiro(self._tabuleiro)
@@ -62,13 +55,15 @@ class Ligue4(object):
                 # Acabou jogada, passa vez
                 self._atualizaJogada()
             else:
+                # call algoritmo Minimax, imprimir tabuleiro antes ou depois da jogada?
                 Utils.printEstadoTabuleiro(self._tabuleiro)
                 # Acabou jogada, passa vez
                 self._atualizaJogada()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs Computador). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas do computador.')
-    parser.add_argument('-m', type=str, help="Um modo de jogo entre: fácil, normal e difícil")
+    parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de jogo entre: facil, normal e dificil.")
+    parser.add_argument('-nome', type=str, help="Seu nome.")
 
     args = parser.parse_args()
-    Ligue4(args.m).run()
+    Ligue4(args.modo, args.nome).run()

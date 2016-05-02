@@ -1,0 +1,2 @@
+class Heuristica(object):
+    pass
