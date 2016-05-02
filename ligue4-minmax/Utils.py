@@ -3,7 +3,6 @@
 
 class Utils(object):
 
-    # ToDo: imprime lista de listas formatada representando tabuleiro Ligue4
     @staticmethod
     def printEstadoTabuleiro(tab):
         tabsFormat = '\t \t \t \t \t \t \t \t'

@@ -6,9 +6,11 @@ from random import randint
 
 class Ligue4(object):
 
+    _VAZIO = '    '
+
     def __init__(self, modo):
         self._modo = modo
-        self._tabuleiro = [[None for x in xrange(6)] for y in xrange(7)]
+        self._tabuleiro = [[self._VAZIO for x in xrange(6)] for y in xrange(7)]
         self._profundidade = self._profundidadeModo(modo)
         self._posicoesDisponiveis = list()
         self._jogadorDaVez = 'Jogador'
@@ -42,7 +44,7 @@ class Ligue4(object):
         self._descobrePosicoesDisponiveisTabuleiro()
 
         while True:
-            print '\t \t \t \t \t \t \t \t###########################################'
+            print '\t \t \t \t \t \t \t #########################################################'
             if self._jogadorDaVez == 'Jogador':
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
 
