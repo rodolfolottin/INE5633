@@ -1,15 +1,14 @@
 # coding: utf-8
 from Utils import Utils
+from Peca import Peca
 import argparse
 from random import randint
 
 
 class Ligue4(object):
 
-    _pecaVazia = '     '
-
     def __init__(self, modo, nomeJogador):
-        self._tabuleiro = [[self._pecaVazia for x in xrange(6)] for y in xrange(7)]
+        self._tabuleiro = [[Peca.VAZIA for x in xrange(6)] for y in xrange(7)]
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
         self._jogador = nomeJogador
 
