@@ -48,7 +48,7 @@ class Ligue4(object):
                         print 'A posição fornecida não é uma das posições disponíveis'
                         continue
                 except ValueError:
-                    print 'A posição fornecida não é um número fornecido não é um número'
+                    print 'A posição fornecida não é um número'
                     jogada = None
                     continue
                 # Acabou jogada, passa vez
