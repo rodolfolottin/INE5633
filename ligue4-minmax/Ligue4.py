@@ -17,12 +17,12 @@ class Ligue4(object):
         else:
             self._jogadorDaVez = self._jogador
 
-        if modo == 'dificil':
-            self._profundidade = 6
-        elif modo == 'normal':
-            self._profundidade = 4
-        else:
+        if modo == 'facil':
             self._profundidade = 2
+        elif modo == 'normal':
+            self._profundidade = 3
+        else:
+            self._profundidade = 5
 
     def _atualizaJogada(self):
         if self._jogadorDaVez == 'Computador':
@@ -61,8 +61,9 @@ class Ligue4(object):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs Computador). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas do computador.')
-    parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de jogo entre: facil, normal e dificil.")
-    parser.add_argument('-nome', type=str, help="Seu nome.")
+    parser.add_argument('nome', type=str, help="Nome do jogador que disputará contra a IA.")
+    parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de dificuldade do jogo.")
 
     args = parser.parse_args()
+
     Ligue4(args.modo, args.nome).run()
