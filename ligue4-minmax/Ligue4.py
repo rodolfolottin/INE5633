@@ -10,7 +10,11 @@ import os
 class Ligue4(object):
 
     def __init__(self, nomeJogador):
-        self._tabuleiro = [[Peca.VAZIA for x in xrange(6)] for y in xrange(7)]
+        self._tabuleiro = []
+        for i in range(7):
+            self._tabuleiro.append([])
+            for j in range(7):
+                self._tabuleiro[i].append(Peca.VAZIA)
         self._jogador = nomeJogador
         self._posicoesDisponiveis = []
         self._minMax = Minimax(5)
@@ -30,6 +34,11 @@ class Ligue4(object):
             self._jogadorDaVez = 'Computador'
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
 
+    def colocaPecaNaPosicao(self, posicaoJogada, pecaJogador):
+        linha = int(posicaoJogada[0])
+        coluna = int(posicaoJogada[1])
+        self._tabuleiro[linha][coluna] = pecaJogador
+
     def run(self):
         print '\t \t \t \t \t \t \t ##############################################################'
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
@@ -37,8 +46,7 @@ class Ligue4(object):
         while True:
             print 'Jogador da vez:', self._jogadorDaVez
             if self._jogadorDaVez == self._jogador:
-                input_msg = 'Em que posicao você deseja jogar? ' + \
-                    str(self._posicoesDisponiveis) + '\n'
+                input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
 
                 Utils.printEstadoTabuleiro(self._tabuleiro)
 
@@ -51,13 +59,15 @@ class Ligue4(object):
                     print 'A posição fornecida não é um número'
                     jogada = None
                     continue
-                # Acabou jogada, passa vez
+
+                self.colocaPecaNaPosicao(str(jogada), Peca.JOGADOR)
+
                 self._alteraJogadorDaVez()
             else:
                 # call algoritmo Minimax, imprimir tabuleiro antes ou depois da
                 # jogada?
                 Utils.printEstadoTabuleiro(self._tabuleiro)
-                # Acabou jogada, passa vez
+
                 self._alteraJogadorDaVez()
 
 if __name__ == '__main__':
