@@ -20,7 +20,7 @@ class Ligue4(object):
         self._minMax = Minimax(5)
 
         if randint(0, 2) == 0:
-            self._jogadorDaVez = 'Computador'
+            self._jogadorDaVez = 'IA'
         else:
             self._jogadorDaVez = self._jogador
 
@@ -28,23 +28,28 @@ class Ligue4(object):
         print("Bem-vindo ao jogo {}! Seu objetivo é formar 4 em linha, coluna ou diagonal antes da IA. ".format(self.__class__.__name__))
 
     def _alteraJogadorDaVez(self):
-        if self._jogadorDaVez == 'Computador':
+        if self._jogadorDaVez == 'IA':
             self._jogadorDaVez = self._jogador
         else:
-            self._jogadorDaVez = 'Computador'
+            self._jogadorDaVez = 'IA'
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
 
     def colocaPecaNaPosicao(self, posicaoJogada, pecaJogador):
-        linha = int(posicaoJogada[0])
-        coluna = int(posicaoJogada[1])
-        self._tabuleiro[linha][coluna] = pecaJogador
+        if len(posicaoJogada) == 2:
+            linha = int(posicaoJogada[0])
+            coluna = int(posicaoJogada[1])
+        # problema com 01, 02, 03...
+        else:
+            linha = int(0)
+            coluna = int(posicaoJogada)
 
+        self._tabuleiro[linha][coluna] = pecaJogador
         self._alteraJogadorDaVez()
 
     def run(self):
         print '\t \t \t \t \t \t \t ##############################################################'
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
-
+        self._jogadorDaVez = 'IA'
         while True:
             print 'Jogador da vez:', self._jogadorDaVez
             if self._jogadorDaVez == self._jogador:
@@ -64,15 +69,12 @@ class Ligue4(object):
 
                 self.colocaPecaNaPosicao(str(jogada), Peca.JOGADOR)
             else:
-                # call algoritmo Minimax, imprimir tabuleiro antes ou depois da
-                # jogada?
+                # call algoritmo Minimax
+                self.colocaPecaNaPosicao(str(60), Peca.COMPUTADOR)
                 Utils.printEstadoTabuleiro(self._tabuleiro)
 
-                # test
-                self.colocaPecaNaPosicao(str(00), Peca.COMPUTADOR)
-
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs Computador). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas do computador.')
+    parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
     parser.add_argument('nome', type=str, help="Nome do jogador que disputará contra a IA.")
     # parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de dificuldade do jogo.")
 
