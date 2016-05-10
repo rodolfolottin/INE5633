@@ -39,6 +39,8 @@ class Ligue4(object):
         coluna = int(posicaoJogada[1])
         self._tabuleiro[linha][coluna] = pecaJogador
 
+        self._alteraJogadorDaVez()
+
     def run(self):
         print '\t \t \t \t \t \t \t ##############################################################'
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
@@ -61,14 +63,13 @@ class Ligue4(object):
                     continue
 
                 self.colocaPecaNaPosicao(str(jogada), Peca.JOGADOR)
-
-                self._alteraJogadorDaVez()
             else:
                 # call algoritmo Minimax, imprimir tabuleiro antes ou depois da
                 # jogada?
                 Utils.printEstadoTabuleiro(self._tabuleiro)
 
-                self._alteraJogadorDaVez()
+                # test
+                self.colocaPecaNaPosicao(str(00), Peca.COMPUTADOR)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs Computador). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas do computador.')
