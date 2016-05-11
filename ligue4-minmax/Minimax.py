@@ -4,4 +4,4 @@ class Minimax(object):
         self.profundidade = profundidade
 
     def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
-        pass
+    	pass
