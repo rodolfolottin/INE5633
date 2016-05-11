@@ -5,7 +5,7 @@ class Utils(object):
 
     @staticmethod
     def printEstadoTabuleiro(tab):
-        tabsFormat = '\t \t \t \t \t \t \t \t'
+        tabsFormat = '\t \t \t \t \t \t \t \t \t \t'
 
         for i in xrange(len(tab)):
             print tabsFormat, '-------------------------------------------------'
@@ -15,5 +15,5 @@ class Utils(object):
     @staticmethod
     # ToDo
     def descobrePosicoesDisponiveisTabuleiro(tab):
-        posicoesDisponiveis = []
+        posicoesDisponiveis = [50]
         return posicoesDisponiveis

@@ -32,30 +32,35 @@ class Ligue4(object):
             self._jogadorDaVez = self._jogador
         else:
             self._jogadorDaVez = 'IA'
+
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
 
-    def colocaPecaNaPosicao(self, posicaoJogada, pecaJogador):
+    def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
         if len(posicaoJogada) == 2:
             linha = int(posicaoJogada[0])
             coluna = int(posicaoJogada[1])
-        # problema com 01, 02, 03...
         else:
+            # problema com 01, 02, 03...
             linha = int(0)
             coluna = int(posicaoJogada)
 
         self._tabuleiro[linha][coluna] = pecaJogador
+
         self._alteraJogadorDaVez()
 
+        Utils.printEstadoTabuleiro(self._tabuleiro)
+
     def run(self):
-        print '\t \t \t \t \t \t \t ##############################################################'
+        print '\t \t \t \t \t \t \t \t \t ##############################################################'
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
+
+        # test
         self._jogadorDaVez = 'IA'
+
         while True:
             print 'Jogador da vez:', self._jogadorDaVez
             if self._jogadorDaVez == self._jogador:
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
-
-                Utils.printEstadoTabuleiro(self._tabuleiro)
 
                 try:
                     jogada = int(raw_input(input_msg))
@@ -67,11 +72,12 @@ class Ligue4(object):
                     jogada = None
                     continue
 
-                self.colocaPecaNaPosicao(str(jogada), Peca.JOGADOR)
+                self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
             else:
                 # call algoritmo Minimax
-                self.colocaPecaNaPosicao(str(60), Peca.COMPUTADOR)
-                Utils.printEstadoTabuleiro(self._tabuleiro)
+
+                # test
+                self.atualizaEstadoTabuleiro(str(60), Peca.COMPUTADOR)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
