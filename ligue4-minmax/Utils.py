@@ -15,5 +15,5 @@ class Utils(object):
     @staticmethod
     # ToDo
     def descobrePosicoesDisponiveisTabuleiro(tab):
-        posicoesDisponiveis = []
+        posicoesDisponiveis = [51, 52, 53, 54, 55, 56]
         return posicoesDisponiveis

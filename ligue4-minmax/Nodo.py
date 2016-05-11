@@ -11,6 +11,7 @@ class Nodo(object):
         self._heuristica = heuristica
         self._utilidade = utilidade
         self._isNodoFolha = False
+        self._filhos = []
 
     def __repr__(self):
         return '{}: {} {} {} {} {} {}'.format(self.__class__.__name__,

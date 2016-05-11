@@ -1,7 +1,7 @@
 class Minimax(object):
 
-    def __init__(self, profundidade):
-        self.profundidade = profundidade
+    def __init__(self):
+        pass
 
     def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
         melhorValor = None

@@ -11,7 +11,7 @@ class Ligue4(object):
 
     def __init__(self, nomeJogador):
         self._tabuleiro = []
-        for i in range(7):
+        for i in range(6):
             self._tabuleiro.append([])
             for j in range(7):
                 self._tabuleiro[i].append(Peca.VAZIA)
@@ -54,9 +54,6 @@ class Ligue4(object):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
         self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
 
-        # test
-        self._jogadorDaVez = 'IA'
-
         while True:
             print 'Jogador da vez:', self._jogadorDaVez
             if self._jogadorDaVez == self._jogador:
@@ -74,10 +71,10 @@ class Ligue4(object):
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
             else:
-                # call algoritmo Minimax
+                # jogada = call algoritmo Minimax
 
                 # test
-                self.atualizaEstadoTabuleiro(str(60), Peca.COMPUTADOR)
+                self.atualizaEstadoTabuleiro(str(50), Peca.COMPUTADOR)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
