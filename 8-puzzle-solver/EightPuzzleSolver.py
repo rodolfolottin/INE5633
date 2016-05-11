@@ -7,7 +7,7 @@ from Utils import Utils as utils
 class EightPuzzleSolver(object):
 
     _nodo_objetivo = {'a11': 1, 'a12': 2, 'a13': 3, 'a23': 4, 'a33': 5, 'a32': 6, 'a31': 7, 'a21': 8, 'a22': ' '}
-    _movimentos_permitidos = ['11', '12', '13', '21', '22',  '23', '31', '32', '33']
+    _movimentos_permitidos = ['11', '12', '13', '21', '22', '23', '31', '32', '33']
     _LINHA = 1
     _COLUNA = 2
     _len_listafronteiras = 0
@@ -16,7 +16,7 @@ class EightPuzzleSolver(object):
         self.fronteiras = []
         self.visitados = []
 
-    #Docstring: Função utilizada para descobrir a chave da posição do quadrado vazio
+    # Docstring: Função utilizada para descobrir a chave da posição do quadrado vazio
     def _descobrirPecaVazia(self, nodo):
         for chave, valor in nodo.items():
             if valor == ' ':
@@ -44,7 +44,7 @@ class EightPuzzleSolver(object):
         chave, nodo = self._descobrirPecaVazia(nodo)
         possiveisMovimentos = []
 
-        for x in (-1,1):
+        for x in (-1, 1):
             possiveisMovimentos.append(str(int(chave[self._LINHA]) + x) + chave[self._COLUNA])
             possiveisMovimentos.append(chave[self._LINHA] + str(int(chave[self._COLUNA]) + x))
 
@@ -72,7 +72,7 @@ class EightPuzzleSolver(object):
 
         novoNodo = Nodo(espacoEstado, 0, profundidade, nodoPai)
 
-        if self.isNodoJaVisitado(novoNodo) == False:
+        if self.isNodoJaVisitado(novoNodo) is False:
             novoNodo.pesoHeuristica = self.computarHeuristicas(novoNodo.estadoTabuleiro)
             self.fronteiras.append(novoNodo)
 
@@ -80,7 +80,7 @@ class EightPuzzleSolver(object):
         return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo)
         # return Heuristica.distanciaDeManhattan(nodo, self._nodo_objetivo) + Heuristica.numeroDePecasForaDoLugar(nodo, self._nodo_objetivo)
 
-    def AStarAlgorithm(self, nodo, nodoInicial = False):
+    def AStarAlgorithm(self, nodo, nodoInicial=False):
         if nodoInicial:
             self.fronteiras.append(nodo)
         while self.fronteiras:

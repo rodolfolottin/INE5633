@@ -20,7 +20,7 @@ class Heuristica(object):
 
         manhattanHeuristic = 0
         # swap chave e valor dict
-        swap_nodo_objetivo = dict((v,k) for k,v in nodoObjetivo.iteritems())
+        swap_nodo_objetivo = dict((v, k) for k, v in nodoObjetivo.iteritems())
 
         for chave in chavesDicionario:
             if nodo[chave] != nodoObjetivo[chave]:
@@ -28,8 +28,7 @@ class Heuristica(object):
                 # conversoes pois a chave ('aij') vem como string
                 linha = int(chave[LINHA])
                 coluna = int(chave[COLUNA])
-                distParaPosicaoCorreta = int(math.fabs(int(pecaObjtv[LINHA]) - linha)) +int(math.fabs(int(pecaObjtv[COLUNA]) - coluna))
+                distParaPosicaoCorreta = int(math.fabs(int(pecaObjtv[LINHA]) - linha)) + int(math.fabs(int(pecaObjtv[COLUNA]) - coluna))
                 manhattanHeuristic += distParaPosicaoCorreta
-
 
         return manhattanHeuristic
