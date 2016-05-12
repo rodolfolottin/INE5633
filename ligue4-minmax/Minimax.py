@@ -1,11 +1,11 @@
+# debugging purposes
 from Utils import Utils
 from Peca import Peca
 
-
 class Minimax(object):
 
-    def __init__(self):
-        pass
+    def __init__(self, tab):
+        self._tab = tab
 
     def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
         melhorValor = None
@@ -16,9 +16,7 @@ class Minimax(object):
 
         elif maximizandoJogador:
             melhorValor = alpha
-
-            # gerar filhos aqui
-            for filho in nodo._filhos:
+            for indices in self.gerarIndicesPossiveisDeJogada(self._tab):
                 valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, melhorValor, beta, False)
                 melhorValor = max(melhorValor, valorFilho)
                 if beta <= melhorValor:
@@ -26,9 +24,7 @@ class Minimax(object):
 
         else:
             melhorValor = beta
-
-            # gerar filhos aqui
-            for filho in nodo._filhos:
+            for indices in self.gerarIndicesPossiveisDeJogada(self._tab):
                 valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, alpha, melhorValor, True)
                 melhorValor = min(melhorValor, valorFilho)
                 if melhorValor <= alpha:
@@ -37,15 +33,14 @@ class Minimax(object):
         return melhorValor
 
     def gerarIndicesPossiveisDeJogada(self, tab):
-
-        # test purposes
-        tab[5][0] = Peca.JOGADOR
-        tab[4][0] = Peca.COMPUTADOR
-        tab[3][0] = Peca.COMPUTADOR
+        indicesPossiveis = []
+        colunasIrrelv = []
 
         for linha in xrange(len(tab) - 1, - 1, - 1):
             for coluna in xrange(len(tab[linha]) - 1, - 1, - 1):
-                if tab[linha][coluna] != Peca.VAZIA:
-                    print linha, coluna
+            	if coluna not in colunasIrrelv:
+                    if tab[linha][coluna] == Peca.VAZIA:
+						colunasIrrelv.append(coluna)
+						indicesPossiveis.append(int(str(linha) + str(coluna)))
 
-        Utils.printEstadoTabuleiro(tab)
+        return indicesPossiveis
