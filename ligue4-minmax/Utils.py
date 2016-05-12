@@ -1,4 +1,5 @@
 # coding: utf-8
+from Peca import Peca
 
 
 class Utils(object):
@@ -9,5 +10,5 @@ class Utils(object):
 
         for i in xrange(len(tab)):
             print tabsFormat, '---------------------------------------------------------'
-            print tabsFormat, '|', tab[i][0], '|', tab[i][1], '|', tab[i][2], '|', tab[i][3], '|', tab[i][4], '|', tab[i][5], '|', tab[i][6], '|'
+            print tabsFormat, '|', Peca.toString(tab[i][0]), '|', Peca.toString(tab[i][1]), '|', Peca.toString(tab[i][2]), '|', Peca.toString(tab[i][3]), '|', Peca.toString(tab[i][4]), '|', Peca.toString(tab[i][5]), '|', Peca.toString(tab[i][6]), '|'
         print tabsFormat, '---------------------------------------------------------'
