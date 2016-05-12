@@ -17,9 +17,9 @@ class Ligue4(object):
                 self._tabuleiro[i].append(Peca.VAZIA)
         self._jogador = nomeJogador
         self._posicoesDisponiveis = []
-        self._minMax = Minimax(5)
+        self._minMax = Minimax(self._tabuleiro)
 
-        if randint(0, 2) == 0:
+        if randint(0, 1) == 0:
             self._jogadorDaVez = 'IA'
         else:
             self._jogadorDaVez = self._jogador
@@ -33,7 +33,7 @@ class Ligue4(object):
         else:
             self._jogadorDaVez = 'IA'
 
-        self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
+        self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
 
     def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
         if len(posicaoJogada) == 2:
@@ -45,19 +45,19 @@ class Ligue4(object):
             coluna = int(posicaoJogada)
 
         self._tabuleiro[linha][coluna] = pecaJogador
-
         self._alteraJogadorDaVez()
-
         Utils.printEstadoTabuleiro(self._tabuleiro)
 
     def run(self):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
-        self._posicoesDisponiveis = Utils.descobrePosicoesDisponiveisTabuleiro(self._tabuleiro)
+        self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
 
         while True:
             print 'Jogador da vez:', self._jogadorDaVez
             if self._jogadorDaVez == self._jogador:
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
+
+                Utils.printEstadoTabuleiro(self._tabuleiro)
 
                 try:
                     jogada = int(raw_input(input_msg))
@@ -71,24 +71,19 @@ class Ligue4(object):
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
             else:
-                # jogada = call algoritmo Minimax
+                # def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
+                # self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
 
                 # test purposes
-                self.atualizaEstadoTabuleiro(str(50), Peca.COMPUTADOR)
+                jogada = self._posicoesDisponiveis[randint(0, len(self._posicoesDisponiveis) - 1)]
+                self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
 
 if __name__ == '__main__':
-    tabuleiro = []
-    for i in range(6):
-        tabuleiro.append([])
-        for j in range(7):
-            tabuleiro[i].append(Peca.VAZIA)
-    minMax = Minimax()
-    minMax.gerarIndicesPossiveisDeJogada(tabuleiro)
-    # parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
-    # parser.add_argument('nome', type=str, help="Nome do jogador que disputará contra a IA.")
-    # # parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de dificuldade do jogo.")
+    parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
+    parser.add_argument('nome', type=str, help="Nome do jogador que disputará contra a IA.")
+    # parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de dificuldade do jogo.")
 
-    # args = parser.parse_args()
+    args = parser.parse_args()
 
-    # # Ligue4(args.modo, args.nome).run()
-    # Ligue4(args.nome).run()
+    # Ligue4(args.modo, args.nome).run()
+    Ligue4(args.nome).run()
