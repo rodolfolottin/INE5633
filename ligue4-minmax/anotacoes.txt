@@ -1,2 +1,0 @@
-bolinha
-u"\u25CF"

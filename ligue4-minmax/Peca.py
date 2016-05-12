@@ -9,6 +9,6 @@ class Peca(object):
         if i == 0:
             return '     '
         elif i == 1:
-            return '  X  '
+            return u"\033[1;31;40m  \u25CF  \033[0m"
         else:
-            return '  O  '
+            return u"\033[1;34;40m  \u25CF  \033[0m"
