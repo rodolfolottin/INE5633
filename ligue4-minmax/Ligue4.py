@@ -73,15 +73,22 @@ class Ligue4(object):
             else:
                 # jogada = call algoritmo Minimax
 
-                # test
+                # test purposes
                 self.atualizaEstadoTabuleiro(str(50), Peca.COMPUTADOR)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
-    parser.add_argument('nome', type=str, help="Nome do jogador que disputará contra a IA.")
-    # parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de dificuldade do jogo.")
+    tabuleiro = []
+    for i in range(6):
+        tabuleiro.append([])
+        for j in range(7):
+            tabuleiro[i].append(Peca.VAZIA)
+    minMax = Minimax()
+    minMax.gerarIndicesPossiveisDeJogada(tabuleiro)
+    # parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
+    # parser.add_argument('nome', type=str, help="Nome do jogador que disputará contra a IA.")
+    # # parser.add_argument('-modo', type=str, choices=list(('facil', 'normal', 'dificil')), help="Um modo de dificuldade do jogo.")
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
-    # Ligue4(args.modo, args.nome).run()
-    Ligue4(args.nome).run()
+    # # Ligue4(args.modo, args.nome).run()
+    # Ligue4(args.nome).run()
