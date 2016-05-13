@@ -2,6 +2,7 @@
 from Utils import Utils
 from Peca import Peca
 
+
 class Minimax(object):
 
     def __init__(self, tab):
@@ -38,9 +39,9 @@ class Minimax(object):
 
         for linha in xrange(len(tab) - 1, - 1, - 1):
             for coluna in xrange(len(tab[linha]) - 1, - 1, - 1):
-            	if coluna not in colunasIrrelv:
+                if coluna not in colunasIrrelv:
                     if tab[linha][coluna] == Peca.VAZIA:
-						colunasIrrelv.append(coluna)
-						indicesPossiveis.append(int(str(linha) + str(coluna)))
+                        colunasIrrelv.append(coluna)
+                        indicesPossiveis.append(int(str(linha) + str(coluna)))
 
         return indicesPossiveis

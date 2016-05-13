@@ -5,7 +5,7 @@ class Peca(object):
     COMPUTADOR = 2
 
     @staticmethod
-    def toString(i):
+    def toStr(i):
         if i == 0:
             return '     '
         elif i == 1:
