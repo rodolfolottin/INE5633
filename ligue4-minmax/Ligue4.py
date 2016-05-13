@@ -52,12 +52,14 @@ class Ligue4(object):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
         self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
 
+        # primeira impressão
+        if self._jogadorDaVez == self._jogador:
+            Utils.printEstadoTabuleiro(self._tabuleiro)
+
         while True:
             print 'Jogador da vez:', self._jogadorDaVez
             if self._jogadorDaVez == self._jogador:
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
-
-                Utils.printEstadoTabuleiro(self._tabuleiro)
 
                 try:
                     jogada = int(raw_input(input_msg))
