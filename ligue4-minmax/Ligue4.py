@@ -36,14 +36,7 @@ class Ligue4(object):
         self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
 
     def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
-        if len(posicaoJogada) == 2:
-            linha = int(posicaoJogada[0])
-            coluna = int(posicaoJogada[1])
-        else:
-            # problema com 01, 02, 03...
-            linha = int(0)
-            coluna = int(posicaoJogada)
-
+        linha, coluna = Utils.parserJogada(posicaoJogada)
         self._tabuleiro[linha][coluna] = pecaJogador
         self._alteraJogadorDaVez()
         Utils.printEstadoTabuleiro(self._tabuleiro)

@@ -12,12 +12,13 @@ class Minimax(object):
         melhorValor = None
 
         if nodo._isNodoFolha or profundidade == 0:
-            # computar heuristica e utilidade
+            # montar board, computar heuristica e utilidade
             melhorValor = nodo
 
         elif maximizandoJogador:
             melhorValor = alpha
-            for indices in self.gerarIndicesPossiveisDeJogada(self._tab):
+            for indice in self.gerarIndicesPossiveisDeJogada(self._tab):
+                filho = self.criarIndiceEmFilho(indice)
                 valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, melhorValor, beta, False)
                 melhorValor = max(melhorValor, valorFilho)
                 if beta <= melhorValor:
@@ -25,7 +26,8 @@ class Minimax(object):
 
         else:
             melhorValor = beta
-            for indices in self.gerarIndicesPossiveisDeJogada(self._tab):
+            for indice in self.gerarIndicesPossiveisDeJogada(self._tab):
+                filho = self.criarIndiceEmFilho(indice)
                 valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, alpha, melhorValor, True)
                 melhorValor = min(melhorValor, valorFilho)
                 if melhorValor <= alpha:
@@ -45,3 +47,10 @@ class Minimax(object):
                         indicesPossiveis.append(int(str(linha) + str(coluna)))
 
         return indicesPossiveis
+
+    def criarIndiceEmFilho(self, indice):
+        linha, coluna = Utils.parserJogada(indice)
+        index = int(str(linha) + str(coluna))
+
+        return Nodo(index, None, None, None, False)
+
