@@ -10,5 +10,5 @@ class Utils(object):
 
         for i in xrange(len(tab)):
             print tabsFormat, '---------------------------------------------------------'
-            print tabsFormat, '|', Peca.toString(tab[i][0]), '|', Peca.toString(tab[i][1]), '|', Peca.toString(tab[i][2]), '|', Peca.toString(tab[i][3]), '|', Peca.toString(tab[i][4]), '|', Peca.toString(tab[i][5]), '|', Peca.toString(tab[i][6]), '|'
+            print tabsFormat, '|', Peca.toStr(tab[i][0]), '|', Peca.toStr(tab[i][1]), '|', Peca.toStr(tab[i][2]), '|', Peca.toStr(tab[i][3]), '|', Peca.toStr(tab[i][4]), '|', Peca.toStr(tab[i][5]), '|', Peca.toStr(tab[i][6]), '|'
         print tabsFormat, '---------------------------------------------------------'
