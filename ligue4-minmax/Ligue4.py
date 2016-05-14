@@ -49,8 +49,23 @@ class Ligue4(object):
     def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
         linha, coluna = Utils.parserJogada(posicaoJogada)
         self._tabuleiro[linha][coluna] = pecaJogador
+        self.analisaAdjacenciasPecaJogada(linha, coluna, pecaJogador)
         self._alteraJogadorDaVez()
         Utils.printEstadoTabuleiro(self._tabuleiro)
+
+    def analisaAdjacenciasPecaJogada(self, linha, coluna, pecaJogada):
+        if self.analisaColunaPecaJogada(linha, coluna, pecaJogada):
+            self._vitoria = True
+
+    def analisaColunaPecaJogada(self, linha, coluna, pecaJogada):
+        sequencia = 1
+
+        # descendo coluna, verificações em linha reta
+        for valorLinha in xrange(linha + 1, self._lenTab, 1):
+            if self._tabuleiro[valorLinha][coluna] == pecaJogada:
+                sequencia += 1
+        if sequencia == 4:
+            return True
 
     def run(self):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
