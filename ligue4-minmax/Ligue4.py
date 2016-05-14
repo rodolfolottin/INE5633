@@ -39,10 +39,10 @@ class Ligue4(object):
             return 4
 
     def _alteraJogadorDaVez(self):
-        if self._jogadorDaVez == 'IA':
-            self._jogadorDaVez = self._jogador
-        else:
-            self._jogadorDaVez = 'IA'
+        # if self._jogadorDaVez == 'IA':
+        #     self._jogadorDaVez = self._jogador
+        # else:
+        #     self._jogadorDaVez = 'IA'
 
         self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
 
@@ -54,7 +54,7 @@ class Ligue4(object):
         Utils.printEstadoTabuleiro(self._tabuleiro)
 
     def analisaAdjacenciasPecaJogada(self, linha, coluna, pecaJogada):
-        if self.analisaColunaPecaJogada(linha, coluna, pecaJogada):
+        if self.analisaColunaPecaJogada(linha, coluna, pecaJogada) or self.analisaLinhaPecaJogada(linha, pecaJogada):
             self._vitoria = True
 
     def analisaColunaPecaJogada(self, linha, coluna, pecaJogada):
@@ -64,8 +64,24 @@ class Ligue4(object):
         for valorLinha in xrange(linha + 1, self._lenTab, 1):
             if self._tabuleiro[valorLinha][coluna] == pecaJogada:
                 sequencia += 1
+            else:
+                sequencia = 0
         if sequencia == 4:
             return True
+
+    def analisaLinhaPecaJogada(self, linha, pecaJogada):
+        sequencia = 0
+
+        for indiceColuna in xrange(7):
+            if self._tabuleiro[linha][indiceColuna] == pecaJogada:
+                sequencia += 1
+            else:
+                sequencia = 0
+
+            if sequencia == 4:
+                break
+
+        return sequencia == 4
 
     def run(self):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
@@ -92,7 +108,8 @@ class Ligue4(object):
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
             else:
-                # def alphabeta_miniMax(self, nodo, self._profundidade, alpha, beta, maximizandoJogador):
+                # def alphabeta_miniMax(self, nodo, self._profundidade, alpha,
+                # beta, maximizandoJogador):
 
                 # test purposes
                 jogada = self._posicoesDisponiveis[randint(0, len(self._posicoesDisponiveis) - 1)]
