@@ -1,18 +1,21 @@
 # debugging purposes
 from Utils import Utils
 from Peca import Peca
+from Nodo import Nodo
+from Heuristica import Heuristica
 
 
 class Minimax(object):
 
-    def __init__(self, tab):
+    def __init__(self, tab, lenTab):
         self._tab = tab
+        self._lenTab = lenTab
 
     def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
         melhorValor = None
 
         if nodo._isNodoFolha or profundidade == 0:
-            # montar board, computar heuristica e utilidade
+            # montar board, computar heuristica e utilidade, verificacoes nodo folha
             melhorValor = nodo
 
         elif maximizandoJogador:
@@ -39,7 +42,7 @@ class Minimax(object):
         indicesPossiveis = []
         colunasIrrelv = []
 
-        for linha in xrange(len(tab) - 1, - 1, - 1):
+        for linha in xrange(self._lenTab - 1, - 1, - 1):
             for coluna in xrange(len(tab[linha]) - 1, - 1, - 1):
                 if coluna not in colunasIrrelv:
                     if tab[linha][coluna] == Peca.VAZIA:
@@ -53,4 +56,3 @@ class Minimax(object):
         index = int(str(linha) + str(coluna))
 
         return Nodo(index, None, None, None, False)
-
