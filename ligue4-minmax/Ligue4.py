@@ -65,6 +65,8 @@ class Ligue4(object):
         for valorLinha in xrange(linha + 1, self._lenTab, 1):
             if self._tabuleiro[valorLinha][coluna] == pecaJogada:
                 sequencia += 1
+                if sequencia == 4:
+                    break
             else:
                 sequencia = 0
         return sequencia == 4
@@ -75,46 +77,85 @@ class Ligue4(object):
         for indiceColuna in xrange(7):
             if self._tabuleiro[linha][indiceColuna] == pecaJogada:
                 sequencia += 1
+                if sequencia == 4:
+                    break
+            else:
+                sequencia = 0
+
+        return sequencia == 4
+
+    def analisaDiagonaisPecaJogada(self, linha, coluna, pecaJogada):
+        return self._analisaEsqInf(linha, coluna, pecaJogada) or self._analisaDirInf(linha, coluna, pecaJogada)
+
+    def _analisaEsqInf(self, linha, coluna, pecaJogada):
+        # print 'Linha e coluna analisadas:', linha, coluna
+        limiteBoard = False
+        indLinha = linha
+        indColuna = coluna
+        sequencia = 0
+
+        # estrategia para descer ao ponto mais a esquerda e baixo da diagonal e começar a percorrer dali
+        while not limiteBoard:
+            # descobrir indices do tab que nao importam e colocar aqui
+            # print 'Percorrendo caminho', indLinha, indColuna
+            if max(5, indLinha + 1) == 5 and min(0, indColuna - 1) == 0:
+                indLinha += 1
+                indColuna -= 1
+            else:
+                break
+
+        # print 'O que ele manda como ponta', indLinha, indColuna
+        for x in range(0, 6):
+            # print 'Percorrendo e analisando', indLinha, indColuna
+            if self._tabuleiro[indLinha][indColuna] == pecaJogada:
+                sequencia += 1
             else:
                 sequencia = 0
 
             if sequencia == 4:
                 break
+            indLinha -= 1
+            indColuna += 1
+            # print 'Valor que adquirem na iteração de análise', indLinha, indColuna
+            if indLinha - 1 < 0 or indColuna + 1 > 6:
+                return False
+
         return sequencia == 4
 
-    def analisaDiagonaisPecaJogada(self, linha, coluna, pecaJogada):
+    def _analisaDirInf(self, linha, coluna, pecaJogada):
+        # print 'Linha e coluna analisadas:', linha, coluna
+        limiteBoard = False
+        indLinha = linha
+        indColuna = coluna
+        sequencia = 0
 
-        def esquerdaBaixo(self, linha, coluna, pecaJogada):
-            sequencia = 0
-            j = coluna
-            for indiceLinha in range(linha, 7):
-                if indiceLinha > 5 or j > 6:
-                    break
-                if self._tabuleiro[indiceLinha][j] == pecaJogada:
-                    sequencia += 1
-                else:
-                    sequencia = 0
-                    break
-                if sequencia == 4:
-                    break
-                j += 1
-            return sequencia == 4
+        # estrategia para descer ao ponto mais a direita e baixo da diagonal e começar a percorrer dali
+        while not limiteBoard:
+            # descobrir indices do tab que nao importam e colocar aqui
+            # print 'Percorrendo caminho', indLinha, indColuna
+            if max(5, indLinha + 1) == 5 and max(6, indColuna + 1) == 6:
+                indLinha += 1
+                indColuna += 1
+            else:
+                break
 
-        def direitaBaixo(self, linha, coluna, pecaJogada):
-            sequencia = 0
-            j = coluna
-            for indiceLinha in xrange(linha, -1, -1):
-                if indiceLinha > 5 or j > 6:
-                    break
-                if self._tabuleiro[indiceLinha][j] == pecaJogada:
-                    sequencia += 1
-                else:
-                    sequencia = 0
-                    break
-                if sequencia == 4:
-                    break
-                j += 1
-            return sequencia == 4
+        # print 'O que ele manda como ponta', indLinha, indColuna
+        for x in range(0, 6):
+            # print 'Percorrendo e analisando', indLinha, indColuna
+            if self._tabuleiro[indLinha][indColuna] == pecaJogada:
+                sequencia += 1
+            else:
+                sequencia = 0
+
+            if sequencia == 4:
+                break
+            indLinha -= 1
+            indColuna -= 1
+            # print 'Valor que adquirem na iteração de análise', indLinha, indColuna
+            if indLinha - 1 < 0 or indColuna - 1 < 0:
+                return False
+
+        return sequencia == 4
 
     def run(self):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
