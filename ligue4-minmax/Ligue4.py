@@ -86,18 +86,15 @@ class Ligue4(object):
 
         def esquerdaBaixo(self, linha, coluna, pecaJogada):
             sequencia = 0
-
             j = coluna
             for indiceLinha in range(linha, 7):
                 if indiceLinha > 5 or j > 6:
                     break
-                print 'Linha, coluna', indiceLinha, j
                 if self._tabuleiro[indiceLinha][j] == pecaJogada:
                     sequencia += 1
                 else:
                     sequencia = 0
                     break
-
                 if sequencia == 4:
                     break
                 j += 1
@@ -105,18 +102,15 @@ class Ligue4(object):
 
         def direitaBaixo(self, linha, coluna, pecaJogada):
             sequencia = 0
-
             j = coluna
             for indiceLinha in xrange(linha, -1, -1):
                 if indiceLinha > 5 or j > 6:
                     break
-                print 'Linha, coluna', indiceLinha, j
                 if self._tabuleiro[indiceLinha][j] == pecaJogada:
                     sequencia += 1
                 else:
                     sequencia = 0
                     break
-
                 if sequencia == 4:
                     break
                 j += 1
