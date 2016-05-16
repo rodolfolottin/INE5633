@@ -20,8 +20,8 @@ class Minimax(object):
 
         elif maximizandoJogador:
             melhorValor = alpha
-            for indice in self.gerarIndicesPossiveisDeJogada(self._tab):
-                filho = self.criarIndiceEmFilho(indice)
+            for indice in self.gerarIndicesPossiveisDeJogada(nodo.board):
+                filho = self.criarNodoFilho(nodo.board, indice, Peca.COMPUTADOR)
                 valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, melhorValor, beta, False)
                 melhorValor = max(melhorValor, valorFilho)
                 if beta <= melhorValor:
@@ -29,8 +29,8 @@ class Minimax(object):
 
         else:
             melhorValor = beta
-            for indice in self.gerarIndicesPossiveisDeJogada(self._tab):
-                filho = self.criarIndiceEmFilho(indice)
+            for indice in self.gerarIndicesPossiveisDeJogada(nodo.board):
+                filho = self.criarNodoFilho(nodo.board, indice, Peca.JOGADOR)
                 valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, alpha, melhorValor, True)
                 melhorValor = min(melhorValor, valorFilho)
                 if melhorValor <= alpha:
@@ -51,12 +51,15 @@ class Minimax(object):
 
         return indicesPossiveis
 
-    def criarIndiceEmFilho(self, indice):
+    def criarNodoFilho(self, tabuleiro, indice, pecaJogada):
         linha, coluna = Utils.parserJogada(indice)
         index = int(str(linha) + str(coluna))
+        board = tabuleiro
+        board[linha][coluna] = pecaJogada
 
-        return Nodo(index, None, None, None, False)
+        isNodoFolha = self.analisaAdjacenciasPecaJogada(linha, coluna, pecaJogada)
 
+        return Nodo(index, board, None, None, isNodoFolha)
 
     def analisaAdjacenciasPecaJogada(self, linha, coluna, pecaJogada):
         if self.analisaColunaPecaJogada(linha, coluna, pecaJogada) or \
@@ -161,6 +164,3 @@ class Minimax(object):
                 return False
 
         return sequencia == 4
-
-
-
