@@ -49,7 +49,7 @@ class Ligue4(object):
     def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
         linha, coluna = Utils.parserJogada(posicaoJogada)
         self._tabuleiro[linha][coluna] = pecaJogador
-        self._vitoria = self._minMax.analisaAdjacenciasPecaJogada(linha, coluna, pecaJogador)
+        self._vitoria = self._minMax.analisaAdjacenciasPecaJogada(self._tabuleiro, linha, coluna, pecaJogador)
         self._alteraJogadorDaVez()
         Utils.printEstadoTabuleiro(self._tabuleiro)
 

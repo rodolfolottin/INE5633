@@ -57,21 +57,21 @@ class Minimax(object):
         board = tabuleiro
         board[linha][coluna] = pecaJogada
 
-        isNodoFolha = self.analisaAdjacenciasPecaJogada(linha, coluna, pecaJogada)
+        isNodoFolha = self.analisaAdjacenciasPecaJogada(board, linha, coluna, pecaJogada)
 
         return Nodo(index, board, None, None, isNodoFolha)
 
-    def analisaAdjacenciasPecaJogada(self, linha, coluna, pecaJogada):
-        if self.analisaColunaPecaJogada(linha, coluna, pecaJogada) or \
-                self.analisaLinhaPecaJogada(linha, pecaJogada) or self.analisaDiagonaisPecaJogada(linha, coluna, pecaJogada):
+    def analisaAdjacenciasPecaJogada(self, tab, linha, coluna, pecaJogada):
+        if self.analisaColunaPecaJogada(tab, linha, coluna, pecaJogada) or \
+                self.analisaLinhaPecaJogada(tab, linha, pecaJogada) or self.analisaDiagonaisPecaJogada(tab, linha, coluna, pecaJogada):
             return True
 
-    def analisaColunaPecaJogada(self, linha, coluna, pecaJogada):
+    def analisaColunaPecaJogada(self, tab, linha, coluna, pecaJogada):
         sequencia = 1
 
         # descendo coluna, verificações em linha reta
         for valorLinha in xrange(linha + 1, self._lenTab, 1):
-            if self._tab[valorLinha][coluna] == pecaJogada:
+            if tab[valorLinha][coluna] == pecaJogada:
                 sequencia += 1
                 if sequencia == 4:
                     break
@@ -79,11 +79,11 @@ class Minimax(object):
                 sequencia = 0
         return sequencia == 4
 
-    def analisaLinhaPecaJogada(self, linha, pecaJogada):
+    def analisaLinhaPecaJogada(self, tab, linha, pecaJogada):
         sequencia = 0
 
         for indiceColuna in xrange(7):
-            if self._tab[linha][indiceColuna] == pecaJogada:
+            if tab[linha][indiceColuna] == pecaJogada:
                 sequencia += 1
                 if sequencia == 4:
                     break
@@ -92,10 +92,10 @@ class Minimax(object):
 
         return sequencia == 4
 
-    def analisaDiagonaisPecaJogada(self, linha, coluna, pecaJogada):
-        return self._analisaEsqInf(linha, coluna, pecaJogada) or self._analisaDirInf(linha, coluna, pecaJogada)
+    def analisaDiagonaisPecaJogada(self, tab, linha, coluna, pecaJogada):
+        return self._analisaEsqInf(tab, linha, coluna, pecaJogada) or self._analisaDirInf(tab, linha, coluna, pecaJogada)
 
-    def _analisaEsqInf(self, linha, coluna, pecaJogada):
+    def _analisaEsqInf(self, tab, linha, coluna, pecaJogada):
         # print 'Linha e coluna analisadas:', linha, coluna
         limiteBoard = False
         indLinha = linha
@@ -115,7 +115,7 @@ class Minimax(object):
         # print 'O que ele manda como ponta', indLinha, indColuna
         for x in range(0, 6):
             # print 'Percorrendo e analisando', indLinha, indColuna
-            if self._tab[indLinha][indColuna] == pecaJogada:
+            if tab[indLinha][indColuna] == pecaJogada:
                 sequencia += 1
             else:
                 sequencia = 0
@@ -130,7 +130,7 @@ class Minimax(object):
 
         return sequencia == 4
 
-    def _analisaDirInf(self, linha, coluna, pecaJogada):
+    def _analisaDirInf(self, tab, linha, coluna, pecaJogada):
         # print 'Linha e coluna analisadas:', linha, coluna
         limiteBoard = False
         indLinha = linha
@@ -150,7 +150,7 @@ class Minimax(object):
         # print 'O que ele manda como ponta', indLinha, indColuna
         for x in range(0, 6):
             # print 'Percorrendo e analisando', indLinha, indColuna
-            if self._tab[indLinha][indColuna] == pecaJogada:
+            if tab[indLinha][indColuna] == pecaJogada:
                 sequencia += 1
             else:
                 sequencia = 0
