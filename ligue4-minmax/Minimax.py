@@ -43,7 +43,7 @@ class Minimax(object):
         colunasIrrelv = []
 
         for linha in xrange(self._lenTab - 1, - 1, - 1):
-            for coluna in xrange(len(tab[linha]) - 1, - 1, - 1):
+            for coluna in xrange(len(tab[linha])):
                 if coluna not in colunasIrrelv:
                     if tab[linha][coluna] == Peca.VAZIA:
                         colunasIrrelv.append(coluna)
