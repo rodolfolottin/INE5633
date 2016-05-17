@@ -1,4 +1,5 @@
 # coding: utf-8
+import copy
 from Utils import Utils
 from Peca import Peca
 from Nodo import Nodo
@@ -15,28 +16,31 @@ class Minimax(object):
         melhorValor = None
 
         if nodo._isNodoFolha or profundidade == 0:
-            # montar board, computar heuristica e utilidade, verificacoes nodo folha
-            melhorValor = nodo
+            # computar heuristica e utilidade
+            # relaciona
+            return 52, nodo
 
         elif maximizandoJogador:
             melhorValor = alpha
-            for indice in self.gerarIndicesPossiveisDeJogada(nodo.board):
-                filho = self.criarNodoFilho(nodo.board, indice, Peca.COMPUTADOR)
-                valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, melhorValor, beta, False)
+            for indice in self.gerarIndicesPossiveisDeJogada(nodo._board):
+                nodoFilho = self.criarNodoFilho(nodo._board, indice, Peca.COMPUTADOR, profundidade - 1)
+                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, melhorValor, beta, False)
+                # aqui ele tá retornando só o valor, não o objeto
                 melhorValor = max(melhorValor, valorFilho)
                 if beta <= melhorValor:
                     break
 
         else:
             melhorValor = beta
-            for indice in self.gerarIndicesPossiveisDeJogada(nodo.board):
-                filho = self.criarNodoFilho(nodo.board, indice, Peca.JOGADOR)
-                valorFilho = self.alphabeta_miniMax(filho, profundidade - 1, alpha, melhorValor, True)
+            for indice in self.gerarIndicesPossiveisDeJogada(nodo._board):
+                nodoFilho = self.criarNodoFilho(nodo._board, indice, Peca.JOGADOR, profundidade - 1)
+                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, alpha, melhorValor, True)
+                # aqui ele tá retornando só o valor, não o objeto
                 melhorValor = min(melhorValor, valorFilho)
                 if melhorValor <= alpha:
                     break
 
-        return melhorValor
+        return melhorValor, nodoRetornado
 
     def gerarIndicesPossiveisDeJogada(self, tab):
         indicesPossiveis = []
@@ -51,15 +55,15 @@ class Minimax(object):
 
         return indicesPossiveis
 
-    def criarNodoFilho(self, tabuleiro, indice, pecaJogada):
-        linha, coluna = Utils.parserJogada(indice)
+    def criarNodoFilho(self, board, indice, pecaJogada, profundidade):
+        linha, coluna = Utils.parserJogada(str(indice))
         index = int(str(linha) + str(coluna))
-        board = tabuleiro
-        board[linha][coluna] = pecaJogada
 
-        isNodoFolha = self.analisaAdjacenciasPecaJogada(board, linha, coluna, pecaJogada)
+        tabuleiro = copy.deepcopy(board)
+        tabuleiro[linha][coluna] = pecaJogada
 
-        return Nodo(index, board, None, None, isNodoFolha)
+        isNodoFolha = self.analisaAdjacenciasPecaJogada(tabuleiro, linha, coluna, pecaJogada)
+        return Nodo(index, tabuleiro, None, None, profundidade, isNodoFolha)
 
     def analisaAdjacenciasPecaJogada(self, tab, linha, coluna, pecaJogada):
         if self.analisaColunaPecaJogada(tab, linha, coluna, pecaJogada) or \
