@@ -1,6 +1,7 @@
 # coding: utf-8
 from Utils import Utils
 from Peca import Peca
+from Nodo import Nodo
 from Minimax import Minimax
 from random import randint
 import argparse
@@ -79,7 +80,10 @@ class Ligue4(object):
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
 
             else:
-                # def alphabeta_miniMax(self, nodo, self._profundidade, alpha, beta, maximizandoJogador):
+                # tabuleiro = [[y for y in x] for x in self._tabuleiro]
+                # nodo = Nodo(None, tabuleiro, None, None, 1, False)
+                # jogada, nodo = self._minMax.alphabeta_miniMax(nodo, 1, -999999999, 999999999, True)
+                # print jogada, nodo._board
 
                 # test purposes
                 jogada = self._posicoesDisponiveis[randint(0, len(self._posicoesDisponiveis) - 1)]
