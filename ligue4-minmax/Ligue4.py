@@ -80,6 +80,9 @@ class Ligue4(object):
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
 
             else:
+                # ToDo: descer em profundidade iterativamente. Fazer um count e quando chegar em um certo valor
+                # alterar o valor de self._profundidade para maior ?
+
                 # tabuleiro = [[y for y in x] for x in self._tabuleiro]
                 # nodo = Nodo(None, tabuleiro, None, None, 1, False)
                 # jogada, nodo = self._minMax.alphabeta_miniMax(nodo, 1, -999999999, 999999999, True)
