@@ -63,7 +63,13 @@ class Heuristica(object):
 
     # aqui vai ser onde vou colocar todas as sequencias em uma lista de listas e mandar para o calcular heuristicas
     def retornaSequencias(self, tabuleiro, peca):
+        listaSequencias = []
+        listaSequencias.append(self.analisaColunaPecaTopo(tabuleiro, peca))
+        listaSequencias.append(self.analisaLinhaPecaTopo(tabuleiro, peca))
+        listaSequencias.append(self.analisaDiagDirPecaTopo(tabuleiro, peca))
+        listaSequencias.append(self.analisaDiagEsqPecaTopo(tabuleiro, peca))
 
+        print listaSequencias
 
     def analisaColunaPecaTopo(self, tabuleiro, peca):
         linha = peca[0]
@@ -90,6 +96,7 @@ class Heuristica(object):
         return listaSequencias
 
     def analisaLinhaPecaTopo(self, tabuleiro, peca):
+        lista = []
         linha = peca[0]
         coluna = peca[1]
 
@@ -99,10 +106,49 @@ class Heuristica(object):
         return self._analiseGenericaLista(lista)
 
     def analisaDiagDirPecaTopo(self, tabuleiro, peca):
-        pass
+        lista = []
+        limiteBoard = False
+        indLinha = peca[0]
+        indColuna = peca[1]
+
+        while not limiteBoard:
+            if max(5, indLinha + 1) == 5 and max(6, indColuna + 1) == 6:
+                indLinha += 1
+                indColuna += 1
+            else:
+                break
+
+        for x in range(0, 6):
+            lista.append(tabuleiro[indLinha][indColuna])
+            indLinha -= 1
+            indColuna -= 1
+            if indLinha < 0 or indColuna < 0: break
+
+        return self._analiseGenericaLista(lista)
 
     def analisaDiagEsqPecaTopo(self, tabuleiro, peca):
-        pass
+        lista = []
+        limiteBoard = False
+        indLinha = peca[0]
+        indColuna = peca[1]
+
+        while not limiteBoard:
+            if max(5, indLinha + 1) == 5 and min(0, indColuna - 1) == 0:
+                indLinha += 1
+                indColuna -= 1
+            else:
+                break
+
+        for x in range(0, 6):
+            lista.append(tabuleiro[indLinha][indColuna])
+            print tabuleiro[indLinha][indColuna]
+            print 'id coluna:', indColuna
+            indLinha -= 1
+            indColuna += 1
+
+            if indLinha < 0 or indColuna > 6: break
+
+        return self._analiseGenericaLista(lista)
 
     def _analiseGenericaLista(self, lista):
         listasSequencias = []
