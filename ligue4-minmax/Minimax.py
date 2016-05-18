@@ -11,14 +11,14 @@ class Minimax(object):
     def __init__(self, tab, lenTab):
         self._tab = tab
         self._lenTab = lenTab
+        self._heuristc = Heuristica()
 
     def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
         melhorValor = None
 
         if nodo._isNodoFolha or profundidade == 0:
-            # computar heuristica e utilidade
-            # relaciona
-            return 52, nodo
+            nodo._heuristica = self._heuristc.computarHeuristicaTabuleiro(nodo, self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board))
+            return nodo._heuristica, nodo
 
         elif maximizandoJogador:
             melhorValor = alpha
@@ -76,7 +76,7 @@ class Minimax(object):
         tabuleiro[linha][coluna] = pecaJogada
 
         isNodoFolha = self.analisaAdjacenciasPecaJogada(tabuleiro, linha, coluna, pecaJogada)
-        return Nodo(index, tabuleiro, None, None, profundidade, isNodoFolha)
+        return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha)
 
     def analisaAdjacenciasPecaJogada(self, tab, linha, coluna, pecaJogada):
         if self.analisaColunaPecaJogada(tab, linha, coluna, pecaJogada) or \

@@ -25,9 +25,9 @@ class Heuristica(object):
 
         if nodo._isNodoFolha:
             if nodo._peca == Peca.COMPUTADOR:
-                nodo._heuristica = 10 ** 5 * profundidade / 2
+                return 10 ** 5 * profundidade / 2
             else:
-                nodo._heuristica = - 10 ** 5 * profundidade / 2
+                return - 10 ** 5 * profundidade / 2
         else:
             for peca in pecasAnalisaveis:
                 pontComp, pontJog = self.calcularHeuristicas(nodo._board, peca)
