@@ -14,33 +14,33 @@ class Minimax(object):
         self._heuristc = Heuristica()
 
     def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
-        melhorValor = None
+        # print nodo._board
+        # print alpha, beta
 
         if nodo._isNodoFolha or profundidade == 0:
             nodo._heuristica = self._heuristc.computarHeuristicaTabuleiro(nodo, self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board))
             return nodo._heuristica, nodo
 
         elif maximizandoJogador:
-            melhorValor = alpha
             for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
-                nodoFilho = self.criarNodoFilho(nodo._board, indice, Peca.COMPUTADOR, profundidade - 1)
-                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, melhorValor, beta, False)
-                # aqui ele tá retornando só o valor, não o objeto
-                melhorValor = max(melhorValor, valorFilho)
-                if beta <= melhorValor:
-                    break
+                # print indice
+                nodoFilho = self.criarNodoFilho(nodo, indice, Peca.COMPUTADOR, profundidade - 1)
+                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, alpha, beta, False)
+                if valorFilho > alpha:
+                    alpha = valorFilho
+                if alpha >= beta:
+                    return alpha, nodoRetornado
+            return alpha, nodoRetornado
 
         else:
-            melhorValor = beta
             for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
-                nodoFilho = self.criarNodoFilho(nodo._board, indice, Peca.JOGADOR, profundidade - 1)
-                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, alpha, melhorValor, True)
-                # aqui ele tá retornando só o valor, não o objeto
-                melhorValor = min(melhorValor, valorFilho)
-                if melhorValor <= alpha:
-                    break
-
-        return melhorValor, nodoRetornado
+                nodoFilho = self.criarNodoFilho(nodo, indice, Peca.JOGADOR, profundidade - 1)
+                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, alpha, beta, True)
+                if valorFilho < beta:
+                    beta = valorFilho
+                if alpha >= beta:
+                    return beta, nodoRetornado
+            return beta, nodoRetornado
 
     def gerarIndicesPossiveisDeJogada(self, tab):
         indicesPossiveis = []
@@ -68,15 +68,22 @@ class Minimax(object):
 
         return indicesPossiveis
 
-    def criarNodoFilho(self, board, indice, pecaJogada, profundidade):
+    def criarNodoFilho(self, nodo, indice, pecaJogada, profundidade):
         linha, coluna = Utils.parserJogada(str(indice))
         index = int(str(linha) + str(coluna))
 
-        tabuleiro = copy.deepcopy(board)
+        tabuleiro = copy.deepcopy(nodo._board)
         tabuleiro[linha][coluna] = pecaJogada
 
+        caminhoJogadas = []
+        if nodo._caminhoJogadas:
+            caminhoJogadas = copy.deepcopy(nodo._caminhoJogadas)
+            caminhoJogadas.append(index)
+        else:
+            caminhoJogadas.append(index)
+
         isNodoFolha = self.analisaAdjacenciasPecaJogada(tabuleiro, linha, coluna, pecaJogada)
-        return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha)
+        return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha, caminhoJogadas)
 
     def analisaAdjacenciasPecaJogada(self, tab, linha, coluna, pecaJogada):
         if self.analisaColunaPecaJogada(tab, linha, coluna, pecaJogada) or \
@@ -142,7 +149,7 @@ class Minimax(object):
             indLinha -= 1
             indColuna += 1
             # print 'Valor que adquirem na iteração de análise', indLinha, indColuna
-            if indLinha - 1 < 0 or indColuna + 1 > 6:
+            if indLinha < 0 or indColuna > 6:
                 return False
 
         return sequencia == 4
@@ -177,7 +184,7 @@ class Minimax(object):
             indLinha -= 1
             indColuna -= 1
             # print 'Valor que adquirem na iteração de análise', indLinha, indColuna
-            if indLinha - 1 < 0 or indColuna - 1 < 0:
+            if indLinha < 0 or indColuna < 0:
                 return False
 
         return sequencia == 4

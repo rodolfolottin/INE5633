@@ -54,6 +54,9 @@ class Ligue4(object):
         self._alteraJogadorDaVez()
         Utils.printEstadoTabuleiro(self._tabuleiro)
 
+    def criaNodoAtual(self):
+        return Nodo(None, [[y for y in x] for x in self._tabuleiro], None, None, self._profundidade, False, None)
+
     def run(self):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
         self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
@@ -78,18 +81,12 @@ class Ligue4(object):
                     continue
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
-
             else:
                 # ToDo: descer em profundidade iterativamente. Fazer um count e quando chegar em um certo valor
                 # alterar o valor de self._profundidade para maior ?
+                valor, nodo = self._minMax.alphabeta_miniMax(self.criaNodoAtual(), 5, -9999999999, 9999999999, True)
+                jogada = nodo._caminhoJogadas[0]
 
-                # tabuleiro = [[y for y in x] for x in self._tabuleiro]
-                # nodo = Nodo(None, tabuleiro, None, None, 1, False)
-                # jogada, nodo = self._minMax.alphabeta_miniMax(nodo, 1, -999999999, 999999999, True)
-                # print jogada, nodo._board
-
-                # test purposes
-                jogada = self._posicoesDisponiveis[randint(0, len(self._posicoesDisponiveis) - 1)]
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
 
 if __name__ == '__main__':
