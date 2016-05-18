@@ -61,9 +61,9 @@ class Heuristica(object):
 
         return pontComp, pontJog
 
-    # aqui vai ser onde vou colocar todas as sequencias em uma lista e mandar para o calcular heuristicas
+    # aqui vai ser onde vou colocar todas as sequencias em uma lista de listas e mandar para o calcular heuristicas
     def retornaSequencias(self, tabuleiro, peca):
-        pass
+
 
     def analisaColunaPecaTopo(self, tabuleiro, peca):
         linha = peca[0]
@@ -90,7 +90,13 @@ class Heuristica(object):
         return listaSequencias
 
     def analisaLinhaPecaTopo(self, tabuleiro, peca):
-        pass
+        linha = peca[0]
+        coluna = peca[1]
+
+        for indiceColuna in xrange(7):
+            lista.append(tabuleiro[linha][indiceColuna])
+
+        return self._analiseGenericaLista(lista)
 
     def analisaDiagDirPecaTopo(self, tabuleiro, peca):
         pass
@@ -98,7 +104,7 @@ class Heuristica(object):
     def analisaDiagEsqPecaTopo(self, tabuleiro, peca):
         pass
 
-    def analiseGenericaLista(self, lista):
+    def _analiseGenericaLista(self, lista):
         listasSequencias = []
         # 7 -> 4 | 6 -> 3 | 5 -> 2 | 4 -> 1
         for quantidadeQuadruplas in xrange(len(lista) - 3):
