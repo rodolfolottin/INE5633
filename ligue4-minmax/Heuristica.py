@@ -1,24 +1,21 @@
 # coding: utf-8
-
 from Peca import Peca
 
-# NÃO ESQUECER DISSO
-# aqui eu tenho que pegar a profundidade, pois quanto menor a profundidade (
-# significa um maior numero de jogadas) e menor deve ser o valor da heuristica
-# assim como se for nodo folha maior deve ser o valor da heuristica
-
-# Três funções que analisam uma lista de elementos, tamanho varia de 4 à 7 elementos
 
 class Heuristica(object):
 
     def __init__(self):
         pass
 
-    # def verificaSequenciaLista(lista):
+    def retornaToposTabuleiro(self, lista):
+        topos = []
 
-    #     colocados =
-    #     possiveis =
+        for num in lista:
+            numStr = str(num)
+            if max(5, int(numStr[0]) + 1) == 5:
+                topos.append(int(str(int(numStr[0]) + 1) + numStr[1]))
 
+        return topos
 
 
 
