@@ -42,6 +42,7 @@ class Heuristica(object):
         pontJog = 0
 
         for lista in listaSequencias:
+            # pontuação computador
             if lista[0] == Peca.COMPUTADOR:
                 if lista[1] == 4:
                     pontComp += 10 ** 5
@@ -49,6 +50,7 @@ class Heuristica(object):
                     pontComp += 10 ** 3
                 elif lista[1] == 2:
                     pontComp += 10 ** 2
+            # pontuação jogador
             else:
                 if lista[1] == 4:
                     pontJog += - 10 ** 5
@@ -59,6 +61,7 @@ class Heuristica(object):
 
         return pontComp, pontJog
 
+    # aqui vai ser onde vou colocar todas as sequencias em uma lista e mandar para o calcular heuristicas
     def retornaSequencias(self, tabuleiro, peca):
         pass
 
@@ -94,3 +97,31 @@ class Heuristica(object):
 
     def analisaDiagEsqPecaTopo(self, tabuleiro, peca):
         pass
+
+    def analiseGenericaLista(self, lista):
+        listasSequencias = []
+        # 7 -> 4 | 6 -> 3 | 5 -> 2 | 4 -> 1
+        for quantidadeQuadruplas in xrange(len(lista) - 3):
+            listaSeq = []
+            sequencia = 1
+            pecaSeq = None
+            primeira = True
+            for indiceColuna in xrange(0, 4):
+                if lista[indiceColuna] != Peca.VAZIA:
+                    if primeira:
+                        primeira = False
+                        pecaSeq = lista[indiceColuna]
+                        continue
+                    if pecaSeq == lista[indiceColuna]:
+                        sequencia += 1
+                    else: break
+                if indiceColuna == 3 and sequencia > 1:
+                    # identifica jogador
+                    listaSeq.append(pecaSeq)
+                    listaSeq.append(sequencia)
+
+            if listaSeq:
+                listasSequencias.append(listaSeq)
+            lista.pop(0)
+
+        return listasSequencias
