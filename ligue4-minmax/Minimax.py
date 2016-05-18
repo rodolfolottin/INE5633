@@ -22,7 +22,7 @@ class Minimax(object):
 
         elif maximizandoJogador:
             melhorValor = alpha
-            for indice in self.gerarIndicesPossiveisDeJogada(nodo._board):
+            for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
                 nodoFilho = self.criarNodoFilho(nodo._board, indice, Peca.COMPUTADOR, profundidade - 1)
                 valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, melhorValor, beta, False)
                 # aqui ele tá retornando só o valor, não o objeto
@@ -32,7 +32,7 @@ class Minimax(object):
 
         else:
             melhorValor = beta
-            for indice in self.gerarIndicesPossiveisDeJogada(nodo._board):
+            for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
                 nodoFilho = self.criarNodoFilho(nodo._board, indice, Peca.JOGADOR, profundidade - 1)
                 valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, alpha, melhorValor, True)
                 # aqui ele tá retornando só o valor, não o objeto
@@ -47,7 +47,20 @@ class Minimax(object):
         colunasIrrelv = []
 
         for linha in xrange(self._lenTab - 1, - 1, - 1):
-            for coluna in (3, 2, 4, 1, 5, 0, 6):
+            for coluna in xrange(len(self._tab[linha])):
+                if coluna not in colunasIrrelv:
+                    if tab[linha][coluna] == Peca.VAZIA:
+                        colunasIrrelv.append(coluna)
+                        indicesPossiveis.append(int(str(linha) + str(coluna)))
+
+        return indicesPossiveis
+
+    def gerarIndicesPossiveisDeJogadaOtimiz(self, tab):
+        indicesPossiveis = []
+        colunasIrrelv = []
+
+        for coluna in (3, 2, 4, 1, 5, 0, 6):
+            for linha in xrange(self._lenTab - 1, - 1, - 1):
                 if coluna not in colunasIrrelv:
                     if tab[linha][coluna] == Peca.VAZIA:
                         colunasIrrelv.append(coluna)
