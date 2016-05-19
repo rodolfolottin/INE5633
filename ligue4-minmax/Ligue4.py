@@ -6,6 +6,8 @@ from Minimax import Minimax
 from random import randint
 import argparse
 import os
+import sys
+import copy
 
 
 class Ligue4(object):
@@ -19,8 +21,8 @@ class Ligue4(object):
         self._jogador = nomeJogador
         self._posicoesDisponiveis = []
         self._lenTab = len(self._tabuleiro)
-        self._minMax = Minimax(self._tabuleiro, self._lenTab)
         self._profundidade = self.setaDificuldadeJogo(modo)
+        self._minMax = Minimax(self._tabuleiro, self._lenTab, self._profundidade)
         self._vitoria = False
 
         if randint(0, 1) == 0:
@@ -55,7 +57,7 @@ class Ligue4(object):
         Utils.printEstadoTabuleiro(self._tabuleiro)
 
     def criaNodoAtual(self):
-        return Nodo(None, [[y for y in x] for x in self._tabuleiro], None, None, self._profundidade, False, None)
+        return Nodo(None, copy.deepcopy(self._tabuleiro), None, None, 0, False, None, -9999999999, 9999999999)
 
     def run(self):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'
@@ -82,10 +84,8 @@ class Ligue4(object):
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
             else:
-                # ToDo: descer em profundidade iterativamente. Fazer um count e quando chegar em um certo valor
-                # alterar o valor de self._profundidade para maior ?
-                valor, nodo = self._minMax.alphabeta_miniMax(self.criaNodoAtual(), 5, -9999999999, 9999999999, True)
-                jogada = nodo._caminhoJogadas[0]
+                nodo = self._minMax.callMinimax(self.criaNodoAtual(), 0)
+                jogada = nodo._index
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
 
