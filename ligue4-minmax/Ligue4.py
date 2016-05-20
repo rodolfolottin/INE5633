@@ -6,7 +6,6 @@ from Minimax import Minimax
 from random import randint
 import argparse
 import os
-import sys
 import copy
 
 
@@ -63,7 +62,7 @@ class Ligue4(object):
         Utils.printEstadoTabuleiro(self._tabuleiro)
 
     def criaNodoAtual(self):
-        return Nodo(None, copy.deepcopy(self._tabuleiro), None, None, 0, False, None, -9999999999, 9999999999)
+        return Nodo(None, copy.deepcopy(self._tabuleiro), None, None, 0, False, -9999999999, 9999999999)
 
     def run(self):
         print '\t \t \t \t \t \t \t \t \t ##############################################################'

@@ -36,6 +36,7 @@ class Minimax(object):
         for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
             self.expandeNodos(nodo, indice, profundidade)
 
+        # retorna melhor solucao que subiu para primeiro nivel
         listaretornados = []
         for nodo in self._nodos:
             if nodo._profundidade == 1:
@@ -91,15 +92,8 @@ class Minimax(object):
         tabuleiro = copy.deepcopy(nodo._board)
         tabuleiro[linha][coluna] = pecaJogada
 
-        caminhoJogadas = []
-        if nodo._caminhoJogadas:
-            caminhoJogadas = copy.deepcopy(nodo._caminhoJogadas)
-            caminhoJogadas.append(index)
-        else:
-            caminhoJogadas.append(index)
-
         isNodoFolha = self.analisaAdjacenciasPecaJogada(tabuleiro, linha, coluna, pecaJogada)
-        return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha, caminhoJogadas, -9999999999, 9999999999)
+        return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha, -9999999999, 9999999999)
 
     def analisaAdjacenciasPecaJogada(self, tab, linha, coluna, pecaJogada):
         if self.analisaColunaPecaJogada(tab, linha, coluna, pecaJogada) or \
