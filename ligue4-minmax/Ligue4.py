@@ -97,8 +97,10 @@ class Ligue4(object):
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.JOGADOR)
             else:
-                nodo = self._minMax.callMinimax(self.criaNodoAtual(), 0)
+                nodo, iteracoes = self._minMax.callMinimax(self.criaNodoAtual(), 0)
                 jogada = nodo._index
+
+                print 'Quantidade iterações até jogada:', iteracoes
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
 

@@ -13,13 +13,16 @@ class Minimax(object):
         self._lenTab = lenTab
         self._heuristc = Heuristica()
         self._profundidade = profundidade
+        self._iteracoes = 0
         self._nodos = list()
 
     def expandeNodos(self, nodo, indice, profundidade):
         if not nodo._beta < nodo._alpha:
             filho = self.criarNodoFilho(nodo, indice, profundidade + 1)
+
             if profundidade + 1 == 1:
                 self._nodos.append(filho)
+            self._iteracoes += 1
 
             filho._heuristica = self._heuristc.computarHeuristicaTabuleiro(filho, self.gerarIndicesPossiveisDeJogadaOtimiz(filho._board))
 
@@ -32,11 +35,12 @@ class Minimax(object):
 
     def callMinimax(self, nodo, profundidade):
         self._nodos = list()
+        self._iteracoes = 1
 
         for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
             self.expandeNodos(nodo, indice, profundidade)
 
-        return max(self._nodos, key=lambda nodo: nodo._heuristica)
+        return max(self._nodos, key=lambda nodo: nodo._heuristica), self._iteracoes
 
     def podaMinimax(self, pai, filho):
         if (filho._profundidade % 2) == 0:
