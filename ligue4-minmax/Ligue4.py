@@ -24,6 +24,7 @@ class Ligue4(object):
         self._profundidade = self.setaDificuldadeJogo(modo)
         self._minMax = Minimax(self._tabuleiro, self._lenTab, self._profundidade)
         self._vitoria = False
+        self._jogadorVencedor = None
 
         if randint(0, 1) == 0:
             self._jogadorDaVez = 'IA'
@@ -53,6 +54,11 @@ class Ligue4(object):
         linha, coluna = Utils.parserJogada(posicaoJogada)
         self._tabuleiro[linha][coluna] = pecaJogador
         self._vitoria = self._minMax.analisaAdjacenciasPecaJogada(self._tabuleiro, linha, coluna, pecaJogador)
+        if self._vitoria:
+            if pecaJogador == 1:
+                self._jogadorVencedor = self._jogador
+            else:
+                self._jogadorVencedor = 'IA'
         self._alteraJogadorDaVez()
         Utils.printEstadoTabuleiro(self._tabuleiro)
 
@@ -88,6 +94,7 @@ class Ligue4(object):
                 jogada = nodo._index
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
+        print 'Jogador vencedor:', self._jogadorVencedor
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
