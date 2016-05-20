@@ -104,6 +104,11 @@ class Ligue4(object):
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
 
+            if not self._posicoesDisponiveis:
+                print '\n \t \t \t \t \t \t \t \t \t \t \t   Jogo terminou empatado.'
+                print '\t \t \t \t \t \t \t \t \t ##############################################################'
+                break
+
             if self._vitoria:
                 print '\n \t \t \t \t \t \t \t \t \t \t \t   Jogador vencedor:', self._jogadorVencedor
                 print '\t \t \t \t \t \t \t \t \t ##############################################################'
