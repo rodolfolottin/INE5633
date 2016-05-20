@@ -1,5 +1,7 @@
 # coding: utf-8
 import copy
+import time
+from random import randint
 from Utils import Utils
 from Peca import Peca
 from Nodo import Nodo
@@ -8,39 +10,48 @@ from Heuristica import Heuristica
 
 class Minimax(object):
 
-    def __init__(self, tab, lenTab):
+    def __init__(self, tab, lenTab, profundidade):
         self._tab = tab
         self._lenTab = lenTab
         self._heuristc = Heuristica()
+        self._profundidade = profundidade
+        self._nodos = list()
 
-    def alphabeta_miniMax(self, nodo, profundidade, alpha, beta, maximizandoJogador):
-        # print nodo._board
-        # print alpha, beta
+    def expandeNodos(self, nodo, indice, profundidade):
+        if not nodo._beta < nodo._alpha:
+            self._nodos.append(self.criarNodoFilho(nodo, indice, profundidade + 1))
+            filho = self._nodos[-1]
+            filho._heuristica = self._heuristc.computarHeuristicaTabuleiro(filho, self.gerarIndicesPossiveisDeJogadaOtimiz(filho._board))
 
-        if nodo._isNodoFolha or profundidade == 0:
-            nodo._heuristica = self._heuristc.computarHeuristicaTabuleiro(nodo, self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board))
-            return nodo._heuristica, nodo
+            if not (filho._isNodoFolha or filho._profundidade == self._profundidade):
+                for ind in self.gerarIndicesPossiveisDeJogadaOtimiz(filho._board):
+                    self.expandeNodos(filho, ind, filho._profundidade)
 
-        elif maximizandoJogador:
-            for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
-                # print indice
-                nodoFilho = self.criarNodoFilho(nodo, indice, Peca.COMPUTADOR, profundidade - 1)
-                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, alpha, beta, False)
-                if valorFilho > alpha:
-                    alpha = valorFilho
-                if alpha >= beta:
-                    return alpha, nodoRetornado
-            return alpha, nodoRetornado
+            self.podaMinimax(nodo, filho)
 
+    def callMinimax(self, nodo, profundidade):
+        self._nodos = list()
+        self._nodos.append(nodo)
+
+        for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
+            self.expandeNodos(nodo, indice, profundidade)
+
+        listaretornados = []
+        for nodo in self._nodos:
+            if nodo._profundidade == 1:
+                listaretornados.append(nodo)
+
+        return max(listaretornados, key=lambda nodo: nodo._heuristica)
+
+    def podaMinimax(self, pai, filho):
+        if (filho._profundidade % 2) == 0:
+            if filho._heuristica < pai._beta:
+                pai._heuristica = filho._heuristica
+            pai._beta = pai._heuristica
         else:
-            for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
-                nodoFilho = self.criarNodoFilho(nodo, indice, Peca.JOGADOR, profundidade - 1)
-                valorFilho, nodoRetornado = self.alphabeta_miniMax(nodoFilho, profundidade - 1, alpha, beta, True)
-                if valorFilho < beta:
-                    beta = valorFilho
-                if alpha >= beta:
-                    return beta, nodoRetornado
-            return beta, nodoRetornado
+            if filho._heuristica > pai._alpha:
+                pai._heuristica = filho._heuristica
+            pai._alpha = pai._heuristica
 
     def gerarIndicesPossiveisDeJogada(self, tab):
         indicesPossiveis = []
@@ -68,9 +79,14 @@ class Minimax(object):
 
         return indicesPossiveis
 
-    def criarNodoFilho(self, nodo, indice, pecaJogada, profundidade):
+    def criarNodoFilho(self, nodo, indice, profundidade):
         linha, coluna = Utils.parserJogada(str(indice))
         index = int(str(linha) + str(coluna))
+
+        if (profundidade % 2) != 0:
+            pecaJogada = Peca.COMPUTADOR
+        else:
+            pecaJogada = Peca.JOGADOR
 
         tabuleiro = copy.deepcopy(nodo._board)
         tabuleiro[linha][coluna] = pecaJogada
@@ -83,7 +99,7 @@ class Minimax(object):
             caminhoJogadas.append(index)
 
         isNodoFolha = self.analisaAdjacenciasPecaJogada(tabuleiro, linha, coluna, pecaJogada)
-        return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha, caminhoJogadas)
+        return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha, caminhoJogadas, -9999999999, 9999999999)
 
     def analisaAdjacenciasPecaJogada(self, tab, linha, coluna, pecaJogada):
         if self.analisaColunaPecaJogada(tab, linha, coluna, pecaJogada) or \
