@@ -20,6 +20,7 @@ class Ligue4(object):
         self._jogador = nomeJogador
         self._posicoesDisponiveis = []
         self._lenTab = len(self._tabuleiro)
+        self._modo = modo
         self._profundidade = self.setaDificuldadeJogo(modo)
         self._minMax = Minimax(self._tabuleiro, self._lenTab, self._profundidade)
         self._vitoria = False
@@ -52,6 +53,7 @@ class Ligue4(object):
     def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
         linha, coluna = Utils.parserJogada(posicaoJogada)
         self._tabuleiro[linha][coluna] = pecaJogador
+        Utils.printEstadoTabuleiro(self._tabuleiro)
         self._vitoria = self._minMax.analisaAdjacenciasPecaJogada(self._tabuleiro, linha, coluna, pecaJogador)
         if self._vitoria:
             if pecaJogador == 1:
@@ -59,7 +61,6 @@ class Ligue4(object):
             else:
                 self._jogadorVencedor = 'IA'
         self._alteraJogadorDaVez()
-        Utils.printEstadoTabuleiro(self._tabuleiro)
 
     def criaNodoAtual(self):
         return Nodo(None, copy.deepcopy(self._tabuleiro), None, None, 0, False, -9999999999, 9999999999)
@@ -72,8 +73,9 @@ class Ligue4(object):
         if self._jogadorDaVez == self._jogador:
             Utils.printEstadoTabuleiro(self._tabuleiro)
 
-        while True and not self._vitoria:
+        while True:
             print 'Jogador da vez:', self._jogadorDaVez
+
             if self._jogadorDaVez == self._jogador:
                 input_msg = 'Em que posicao você deseja jogar? ' + str(self._posicoesDisponiveis) + '\n'
 
@@ -93,7 +95,16 @@ class Ligue4(object):
                 jogada = nodo._index
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
-        print 'Jogador vencedor:', self._jogadorVencedor
+
+            if self._vitoria:
+                print '\n \t \t \t \t \t \t \t \t \t \t \t   Jogador vencedor:', self._jogadorVencedor
+                print '\t \t \t \t \t \t \t \t \t ##############################################################'
+                break
+
+        stop = raw_input("Jogar novamente? y/n:")
+
+        if stop == 'y':
+            Ligue4(self._jogador, self._modo).run()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Emula o jogo Ligue4 (Jogador vs IA). Foi utilizado o algoritmo Minimax com poda alfa e beta para implementação das jogadas da IA.')
