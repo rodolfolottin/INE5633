@@ -1,11 +1,9 @@
 # coding: utf-8
-import copy
-import time
-from random import randint
 from Utils import Utils
 from Peca import Peca
 from Nodo import Nodo
 from Heuristica import Heuristica
+import copy
 
 
 class Minimax(object):
@@ -34,18 +32,11 @@ class Minimax(object):
 
     def callMinimax(self, nodo, profundidade):
         self._nodos = list()
-        self._nodos.append(nodo)
 
         for indice in self.gerarIndicesPossiveisDeJogadaOtimiz(nodo._board):
             self.expandeNodos(nodo, indice, profundidade)
 
-        # retorna melhor solucao que subiu para primeiro nivel
-        listaretornados = []
-        for nodo in self._nodos:
-            if nodo._profundidade == 1:
-                listaretornados.append(nodo)
-
-        return max(listaretornados, key=lambda nodo: nodo._heuristica)
+        return max(self._nodos, key=lambda nodo: nodo._heuristica)
 
     def podaMinimax(self, pai, filho):
         if (filho._profundidade % 2) == 0:
@@ -95,10 +86,10 @@ class Minimax(object):
         tabuleiro = copy.deepcopy(nodo._board)
         tabuleiro[linha][coluna] = pecaJogada
 
-        isNodoFolha = self.analisaAdjacenciasPecaJogada(tabuleiro, linha, coluna, pecaJogada)
+        isNodoFolha = self.verificaVitoriaPecaJogada(tabuleiro, linha, coluna, pecaJogada)
         return Nodo(index, tabuleiro, pecaJogada, None, profundidade, isNodoFolha, -9999999999, 9999999999)
 
-    def analisaAdjacenciasPecaJogada(self, tab, linha, coluna, pecaJogada):
+    def verificaVitoriaPecaJogada(self, tab, linha, coluna, pecaJogada):
         if self.analisaColunaPecaJogada(tab, linha, coluna, pecaJogada) or \
                 self.analisaLinhaPecaJogada(tab, linha, pecaJogada) or self.analisaDiagonaisPecaJogada(tab, linha, coluna, pecaJogada):
             return True
