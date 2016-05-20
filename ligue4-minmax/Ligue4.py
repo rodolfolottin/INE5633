@@ -25,6 +25,7 @@ class Ligue4(object):
         self._minMax = Minimax(self._tabuleiro, self._lenTab, self._profundidade)
         self._vitoria = False
         self._jogadorVencedor = None
+        self._count = 0
 
         if randint(0, 1) == 0:
             self._jogadorDaVez = 'IA'
@@ -50,11 +51,16 @@ class Ligue4(object):
 
         self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
 
+    def _analisaProfundidadeDinamica(self):
+        if self._count > 17 and self._profundidade > 4 and self._profundidade < 9:
+            self._profundidade = 9
+
     def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
         linha, coluna = Utils.parserJogada(posicaoJogada)
         self._tabuleiro[linha][coluna] = pecaJogador
         Utils.printEstadoTabuleiro(self._tabuleiro)
-        self._vitoria = self._minMax.analisaAdjacenciasPecaJogada(self._tabuleiro, linha, coluna, pecaJogador)
+        self._vitoria = self._minMax.verificaVitoriaPecaJogada(self._tabuleiro, linha, coluna, pecaJogador)
+        self._analisaProfundidadeDinamica()
         if self._vitoria:
             if pecaJogador == 1:
                 self._jogadorVencedor = self._jogador
