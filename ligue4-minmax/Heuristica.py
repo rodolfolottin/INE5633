@@ -27,16 +27,16 @@ class Heuristica(object):
 
         if nodo._isNodoFolha:
             if nodo._peca == Peca.COMPUTADOR:
-                pontuacao = 10 ** 4 - nodo._profundidade * 50
+                pontuacao = 10 ** 4 - nodo._profundidade * 25
             elif nodo._peca == Peca.JOGADOR:
-                pontuacao = -10 ** 4 - nodo._profundidade * 50
+                pontuacao = -10 ** 4 - nodo._profundidade * 25
         else:
             for peca in pecasAnalisaveis:
                 pontComp, pontJog = self.calcularHeuristicas(nodo._board, peca)
                 pontuacao += pontComp
                 pontuacao -= pontJog
 
-        return pontuacao - nodo._profundidade - nodo._profundidade * 50
+        return pontuacao - nodo._profundidade * 25
 
     def calcularHeuristicas(self, tabuleiro, peca):
         listaSequencias = self.retornaSequencias(tabuleiro, peca)
