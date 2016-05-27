@@ -39,7 +39,7 @@ class Ligue4(object):
         if modo.lower() == 'facil':
             return 3
         elif modo.lower() == 'dificil':
-            return 5
+            return 6
         else:
             return 4
 
@@ -48,11 +48,11 @@ class Ligue4(object):
             self._jogadorDaVez = self._jogador
         else:
             self._jogadorDaVez = 'IA'
-
+        self._count += 1
         self._posicoesDisponiveis = self._minMax.gerarIndicesPossiveisDeJogada(self._tabuleiro)
 
     def _analisaProfundidadeDinamica(self):
-        if self._count > 17 and self._profundidade > 4 and self._profundidade < 9:
+        if self._count > 15 and self._profundidade > 4 and self._profundidade < 9:
             self._profundidade = 9
 
     def atualizaEstadoTabuleiro(self, posicaoJogada, pecaJogador):
@@ -104,7 +104,7 @@ class Ligue4(object):
 
                 self.atualizaEstadoTabuleiro(str(jogada), Peca.COMPUTADOR)
 
-            if not self._posicoesDisponiveis:
+            if not self._posicoesDisponiveis and not self._vitoria:
                 print '\n \t \t \t \t \t \t \t \t \t \t \t   Jogo terminou empatado.'
                 print '\t \t \t \t \t \t \t \t \t ##############################################################'
                 break
