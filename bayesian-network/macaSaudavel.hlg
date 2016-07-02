@@ -1,0 +1,555 @@
+Thu Jun 30 16:13:17 2016
+
+
+Moral links:
+
+    Marrying TipoMaca and Resfriamento
+    Marrying UtilizouAgrotoxico and SituacaoSolo
+    Marrying SituacaoPeh and Resfriamento
+    Marrying SituacaoPeh and TipoMaca
+
+
+Triangulating prime component with 2 members:
+    Resfriamento, OrigemCompra
+This component is a clique of cost 6
+
+Triangulating prime component with 4 members:
+    Resfriamento, MacaSuculenta, TipoMaca, SituacaoPeh
+This component is a clique of cost 32
+
+Triangulating prime component with 3 members:
+    SituacaoSolo, UtilizouAgrotoxico, SituacaoPeh
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 46
+
+
+Elimination sequence:
+
+    UtilizouAgrotoxico
+    SituacaoSolo
+    TipoMaca
+    MacaSuculenta
+    SituacaoPeh
+    OrigemCompra
+    Resfriamento
+
+
+Cliques:
+
+Clique 3, 2 members, table size = 6:
+    Resfriamento, OrigemCompra
+
+Clique 2, 4 members, table size = 32:
+    Resfriamento, SituacaoPeh, MacaSuculenta, TipoMaca
+
+Clique 1, 3 members, table size = 8:
+    SituacaoPeh, SituacaoSolo, UtilizouAgrotoxico
+
+Total clique table size: 46
+
+
+The junction forest:
+
+Creating junction tree with clique 3 as root ...
+
+Cliques 2 and 3 linked, separator has 1 member and table size = 2:
+    Resfriamento
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 2:
+    SituacaoPeh
+
+
+Assignment of potentials to cliques:
+
+    Node SituacaoSolo assigned to clique 1
+    Node Resfriamento assigned to clique 3
+    Node MacaSuculenta assigned to clique 2
+    Node OrigemCompra assigned to clique 3
+    Node TipoMaca assigned to clique 2
+    Node UtilizouAgrotoxico assigned to clique 1
+    Node SituacaoPeh assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    SituacaoSolo:
+	bom        0,75
+	ruim       0,25
+
+    Resfriamento:
+	false      0,36
+	true       0,64
+
+    MacaSuculenta:
+	false      0,223449
+	true       0,776551
+
+    OrigemCompra:
+	Distribuidor 0,25
+	Feira      0,15
+	Supermercado 0,6
+
+    TipoMaca:
+	Argentina  0,2
+	Fuji       0,3
+	Gala       0,35
+	Pink Lady  0,15
+
+    UtilizouAgrotoxico:
+	não       0,1
+	sim        0,9
+
+    SituacaoPeh:
+	bom        0,74
+	ruim       0,26
+Thu Jun 30 18:31:44 2016
+
+
+Moral links:
+
+    Marrying TipoMaca and Resfriamento
+    Marrying UtilizouAgrotoxico and SituacaoSolo
+    Marrying SituacaoPeh and Resfriamento
+    Marrying SituacaoPeh and TipoMaca
+
+
+Triangulating prime component with 2 members:
+    Resfriamento, OrigemCompra
+This component is a clique of cost 6
+
+Triangulating prime component with 4 members:
+    Resfriamento, MacaSuculenta, TipoMaca, SituacaoPeh
+This component is a clique of cost 32
+
+Triangulating prime component with 3 members:
+    SituacaoSolo, UtilizouAgrotoxico, SituacaoPeh
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 46
+
+
+Elimination sequence:
+
+    UtilizouAgrotoxico
+    SituacaoSolo
+    TipoMaca
+    MacaSuculenta
+    SituacaoPeh
+    OrigemCompra
+    Resfriamento
+
+
+Cliques:
+
+Clique 3, 2 members, table size = 6:
+    Resfriamento, OrigemCompra
+
+Clique 2, 4 members, table size = 32:
+    Resfriamento, SituacaoPeh, MacaSuculenta, TipoMaca
+
+Clique 1, 3 members, table size = 8:
+    SituacaoPeh, SituacaoSolo, UtilizouAgrotoxico
+
+Total clique table size: 46
+
+
+The junction forest:
+
+Creating junction tree with clique 3 as root ...
+
+Cliques 2 and 3 linked, separator has 1 member and table size = 2:
+    Resfriamento
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 2:
+    SituacaoPeh
+
+
+Assignment of potentials to cliques:
+
+    Node SituacaoSolo assigned to clique 1
+    Node Resfriamento assigned to clique 3
+    Node MacaSuculenta assigned to clique 2
+    Node OrigemCompra assigned to clique 3
+    Node TipoMaca assigned to clique 2
+    Node UtilizouAgrotoxico assigned to clique 1
+    Node SituacaoPeh assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    SituacaoSolo:
+	bom        0,75
+	ruim       0,25
+
+    Resfriamento:
+	false      0,36
+	true       0,64
+
+    MacaSuculenta:
+	false      0,223449
+	true       0,776551
+
+    OrigemCompra:
+	Distribuidor 0,25
+	Feira      0,15
+	Supermercado 0,6
+
+    TipoMaca:
+	Argentina  0,2
+	Fuji       0,3
+	Gala       0,35
+	Pink Lady  0,15
+
+    UtilizouAgrotoxico:
+	não       0,1
+	sim        0,9
+
+    SituacaoPeh:
+	bom        0,74
+	ruim       0,26
+Thu Jun 30 18:31:47 2016
+
+
+Moral links:
+
+    Marrying TipoMaca and Resfriamento
+    Marrying UtilizouAgrotoxico and SituacaoSolo
+    Marrying SituacaoPeh and Resfriamento
+    Marrying SituacaoPeh and TipoMaca
+
+
+Triangulating prime component with 2 members:
+    Resfriamento, OrigemCompra
+This component is a clique of cost 6
+
+Triangulating prime component with 4 members:
+    Resfriamento, MacaSuculenta, TipoMaca, SituacaoPeh
+This component is a clique of cost 32
+
+Triangulating prime component with 3 members:
+    SituacaoSolo, UtilizouAgrotoxico, SituacaoPeh
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 46
+
+
+Elimination sequence:
+
+    UtilizouAgrotoxico
+    SituacaoSolo
+    TipoMaca
+    MacaSuculenta
+    SituacaoPeh
+    OrigemCompra
+    Resfriamento
+
+
+Cliques:
+
+Clique 3, 2 members, table size = 6:
+    Resfriamento, OrigemCompra
+
+Clique 2, 4 members, table size = 32:
+    Resfriamento, SituacaoPeh, MacaSuculenta, TipoMaca
+
+Clique 1, 3 members, table size = 8:
+    SituacaoPeh, SituacaoSolo, UtilizouAgrotoxico
+
+Total clique table size: 46
+
+
+The junction forest:
+
+Creating junction tree with clique 3 as root ...
+
+Cliques 2 and 3 linked, separator has 1 member and table size = 2:
+    Resfriamento
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 2:
+    SituacaoPeh
+
+
+Assignment of potentials to cliques:
+
+    Node SituacaoSolo assigned to clique 1
+    Node Resfriamento assigned to clique 3
+    Node MacaSuculenta assigned to clique 2
+    Node OrigemCompra assigned to clique 3
+    Node TipoMaca assigned to clique 2
+    Node UtilizouAgrotoxico assigned to clique 1
+    Node SituacaoPeh assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    SituacaoSolo:
+	bom        0,75
+	ruim       0,25
+
+    Resfriamento:
+	false      0,36
+	true       0,64
+
+    MacaSuculenta:
+	false      0,223449
+	true       0,776551
+
+    OrigemCompra:
+	Distribuidor 0,25
+	Feira      0,15
+	Supermercado 0,6
+
+    TipoMaca:
+	Argentina  0,2
+	Fuji       0,3
+	Gala       0,35
+	Pink Lady  0,15
+
+    UtilizouAgrotoxico:
+	não       0,1
+	sim        0,9
+
+    SituacaoPeh:
+	bom        0,74
+	ruim       0,26
+Thu Jun 30 18:31:54 2016
+
+
+Moral links:
+
+    Marrying TipoMaca and Resfriamento
+    Marrying UtilizouAgrotoxico and SituacaoSolo
+    Marrying SituacaoPeh and Resfriamento
+    Marrying SituacaoPeh and TipoMaca
+
+
+Triangulating prime component with 2 members:
+    Resfriamento, OrigemCompra
+This component is a clique of cost 6
+
+Triangulating prime component with 4 members:
+    Resfriamento, MacaSuculenta, TipoMaca, SituacaoPeh
+This component is a clique of cost 32
+
+Triangulating prime component with 3 members:
+    SituacaoSolo, UtilizouAgrotoxico, SituacaoPeh
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 46
+
+
+Elimination sequence:
+
+    UtilizouAgrotoxico
+    SituacaoSolo
+    TipoMaca
+    MacaSuculenta
+    SituacaoPeh
+    OrigemCompra
+    Resfriamento
+
+
+Cliques:
+
+Clique 3, 2 members, table size = 6:
+    Resfriamento, OrigemCompra
+
+Clique 2, 4 members, table size = 32:
+    Resfriamento, SituacaoPeh, MacaSuculenta, TipoMaca
+
+Clique 1, 3 members, table size = 8:
+    SituacaoPeh, SituacaoSolo, UtilizouAgrotoxico
+
+Total clique table size: 46
+
+
+The junction forest:
+
+Creating junction tree with clique 3 as root ...
+
+Cliques 2 and 3 linked, separator has 1 member and table size = 2:
+    Resfriamento
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 2:
+    SituacaoPeh
+
+
+Assignment of potentials to cliques:
+
+    Node SituacaoSolo assigned to clique 1
+    Node Resfriamento assigned to clique 3
+    Node MacaSuculenta assigned to clique 2
+    Node OrigemCompra assigned to clique 3
+    Node TipoMaca assigned to clique 2
+    Node UtilizouAgrotoxico assigned to clique 1
+    Node SituacaoPeh assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    SituacaoSolo:
+	bom        0,75
+	ruim       0,25
+
+    Resfriamento:
+	false      0,36
+	true       0,64
+
+    MacaSuculenta:
+	false      0,223449
+	true       0,776551
+
+    OrigemCompra:
+	Distribuidor 0,25
+	Feira      0,15
+	Supermercado 0,6
+
+    TipoMaca:
+	Argentina  0,2
+	Fuji       0,3
+	Gala       0,35
+	Pink Lady  0,15
+
+    UtilizouAgrotoxico:
+	não       0,1
+	sim        0,9
+
+    SituacaoPeh:
+	bom        0,74
+	ruim       0,26
+Thu Jun 30 18:32:02 2016
+
+
+Moral links:
+
+    Marrying TipoMaca and Resfriamento
+    Marrying UtilizouAgrotoxico and SituacaoSolo
+    Marrying SituacaoPeh and Resfriamento
+    Marrying SituacaoPeh and TipoMaca
+
+
+Triangulating prime component with 2 members:
+    Resfriamento, OrigemCompra
+This component is a clique of cost 6
+
+Triangulating prime component with 4 members:
+    Resfriamento, MacaSuculenta, TipoMaca, SituacaoPeh
+This component is a clique of cost 32
+
+Triangulating prime component with 3 members:
+    SituacaoSolo, UtilizouAgrotoxico, SituacaoPeh
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 46
+
+
+Elimination sequence:
+
+    UtilizouAgrotoxico
+    SituacaoSolo
+    TipoMaca
+    MacaSuculenta
+    SituacaoPeh
+    OrigemCompra
+    Resfriamento
+
+
+Cliques:
+
+Clique 3, 2 members, table size = 6:
+    Resfriamento, OrigemCompra
+
+Clique 2, 4 members, table size = 32:
+    Resfriamento, SituacaoPeh, MacaSuculenta, TipoMaca
+
+Clique 1, 3 members, table size = 8:
+    SituacaoPeh, SituacaoSolo, UtilizouAgrotoxico
+
+Total clique table size: 46
+
+
+The junction forest:
+
+Creating junction tree with clique 3 as root ...
+
+Cliques 2 and 3 linked, separator has 1 member and table size = 2:
+    Resfriamento
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 2:
+    SituacaoPeh
+
+
+Assignment of potentials to cliques:
+
+    Node SituacaoSolo assigned to clique 1
+    Node Resfriamento assigned to clique 3
+    Node MacaSuculenta assigned to clique 2
+    Node OrigemCompra assigned to clique 3
+    Node TipoMaca assigned to clique 2
+    Node UtilizouAgrotoxico assigned to clique 1
+    Node SituacaoPeh assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    SituacaoSolo:
+	bom        0,75
+	ruim       0,25
+
+    Resfriamento:
+	false      0,36
+	true       0,64
+
+    MacaSuculenta:
+	false      0,223449
+	true       0,776551
+
+    OrigemCompra:
+	Distribuidor 0,25
+	Feira      0,15
+	Supermercado 0,6
+
+    TipoMaca:
+	Argentina  0,2
+	Fuji       0,3
+	Gala       0,35
+	Pink Lady  0,15
+
+    UtilizouAgrotoxico:
+	não       0,1
+	sim        0,9
+
+    SituacaoPeh:
+	bom        0,74
+	ruim       0,26

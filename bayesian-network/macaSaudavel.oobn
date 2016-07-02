@@ -1,0 +1,211 @@
+class macaSaudavel
+{
+    inputs = ();
+    outputs = ();
+    node_size = (80 40);
+    HR_DBN_Num_Slices = "5";
+    HR_Desc = "";
+    HR_OOBN_CheckConsistency = "1";
+    HR_OOBN_FitExpand = "1";
+    HR_Zoom_ZoomFactor = "100";
+    HR_Groups_GroupColors = "";
+    HR_Groups_GroupNames = "";
+    HR_Groups_UserGroupsNo = "0";
+    HR_Utility_Link = "63";
+    HR_Probabilistic_Link = "63";
+    HR_Functional_Link = "63";
+    HR_Binding_Link = "63";
+    HR_Information_Arc = "63";
+    HR_Color_Interface = "21";
+    HR_Color_Instance = "0";
+    HR_Color_DiscreteFunction = "5";
+    HR_Color_Function = "4";
+    HR_Color_Utility = "36";
+    HR_Color_Decision = "17";
+    HR_Color_ContinuousChance = "48";
+    HR_Color_DiscreteChance = "16";
+    HR_Monitor_InitSD = "2";
+    HR_Monitor_Utility_Arrange = "0";
+    HR_Monitor_Mean_Variance = "1";
+    HR_Monitor_Chance_Utility = "1";
+    HR_Monitor_InitStates = "5";
+    HR_Monitor_OpenGraph = "0";
+    HR_Monitor_GraphPrecision = "100";
+    HR_Monitor_AutoUpdGraph = "0";
+    HR_Compile_MaxMinimalSeparators = "100000";
+    HR_Compile_ApproxEpsilon = "1.0E-5";
+    HR_Compile_Approximate = "0";
+    HR_Compile_SaveToMemory = "0";
+    HR_Compile_Compress = "0";
+    HR_Compile_TriangMethod = "0";
+    HR_Propagate_AutoNormal = "1";
+    HR_Propagate_AutoSum = "1";
+    HR_Propagate_Auto = "1";
+    HR_Font_Italic = "0";
+    HR_Font_Weight = "400";
+    HR_Font_Size = "-12";
+    HR_Font_Name = "javax.swing.plaf.FontUIResource[family=Ubuntu,name=Ubuntu,style=plain,size=12]";
+    HR_Grid_GridShow = "0";
+    HR_Grid_GridSnap = "0";
+    HR_Grid_Y = "40";
+    HR_Grid_X = "40";
+
+    node SituacaoSolo
+    {
+	label = "Situacao Solo";
+	position = (482 88);
+	states = ("bom" "ruim");
+	HR_LinkGroup = "[SituacaoPeh:0]";
+	HR_LinkMode = "[SituacaoPeh:0]";
+	HR_NodeSize = "(140, 73)";
+	HR_Group = "0";
+	HR_Desc = "Nodo referente a qualidade do solo para planta\303\247\303\265es de ma\303\247\303\243s em Santa Catarina. Levamos em conta onde existem as planta\303\247\303\265es e definimos que, neste solo, cerca de 75% do mesmo \303\251 prop\303\255cio para planta\303\247\303\243o.";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node Resfriamento
+    {
+	label = "Resfriamento";
+	position = (781 247);
+	states = ("false" "true");
+	subtype = boolean;
+	HR_LinkGroup = "[MacaSuculenta:0]";
+	HR_LinkMode = "[MacaSaudavel:0][MacaSuculenta:0]";
+	HR_Group = "0";
+	HR_Desc = "Este nodo refere-se ao resfriamento da fruta. Exemplo: Dado que a ma\303\247\303\243 \303\251 de um supermercado, existe 95% de chance de que ela tenha sido resfriada.";
+	HR_State_1 = "";
+	HR_State_0 = "";
+	HR_NodeSize = "(129, 83)";
+    }
+
+    node MacaSuculenta
+    {
+	label = "Ma\303\247\303\243 Suculenta";
+	position = (539 332);
+	states = ("false" "true");
+	subtype = boolean;
+	HR_NodeSize = "(145, 89)";
+	HR_Group = "0";
+	HR_Desc = "Qu\303\243o \"gostosa\" a ma\303\247\303\243 \303\251, ou seja, o quanto seu suco, seu doce estar\303\241 preservado. Levamos em conta caracter\303\255sticas dos tipos, como por exemplo: durabilidade, resistencia, etc...";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node OrigemCompra
+    {
+	label = "Origem Compra";
+	position = (962 150);
+	states = ("Distribuidor" "Feira" "Supermercado");
+	HR_LinkControlPoints = "";
+	HR_LinkGroup = "[Resfriamento:0]";
+	HR_LinkMode = "[Resfriamento:0]";
+	HR_State_3 = "";
+	HR_State_2 = "";
+	HR_NodeSize = "(126, 85)";
+	HR_Group = "0";
+	HR_Desc = "Probabilidade de origem da compra da ma\303\247\303\243. Refere-se a qual a chance de, dado voc\303\252 pegar uma ma\303\247\303\243 aleat\303\263ria, de ela ser provinda de um Distribuidor, Feira ou Supermercado.";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node TipoMaca
+    {
+	label = "Tipo Ma\303\247\303\243";
+	position = (661 137);
+	states = ("Argentina" "Fuji" "Gala" "Pink Lady");
+	HR_LinkControlPoints = "";
+	HR_LinkGroup = "[MacaSuculenta:0]";
+	HR_LinkMode = "[MacaSaudavel:0][MacaSuculenta:0]";
+	HR_NodeSize = "(140, 83)";
+	HR_State_3 = "";
+	HR_State_2 = "";
+	HR_Group = "0";
+	HR_Desc = "Este nodo refere-se a distribui\303\247\303\243o de probabilidades de cada tipo de ma\303\247\303\243 em Santa Catarina. Levamos em conta as mais populares.";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node UtilizouAgrotoxico
+    {
+	label = "Utilizou Agrotoxico?";
+	position = (245 91);
+	states = ("n\303\243o" "sim");
+	HR_LinkGroup = "[SituacaoPeh:0]";
+	HR_LinkMode = "[SituacaoPeh:0]";
+	HR_NodeSize = "(171, 74)";
+	HR_Group = "0";
+	HR_Desc = "Refere-se a probabilidade de utiliza\303\247\303\243o de agrot\303\263xico em planta\303\247\303\265es de ma\303\247\303\243. De acordo com nossas pesquisas e conversas conclu\303\255mos que cerca de 90% das planta\303\247\303\265es de ma\303\247\303\243 no estado de Santa Catarina utilizam agrot\303\263xicos.";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    node SituacaoPeh
+    {
+	label = "Situacao P\303\251";
+	position = (392 216);
+	states = ("bom" "ruim");
+	HR_LinkGroup = "[MacaSuculenta:0]";
+	HR_LinkMode = "[Saudavel:0][MacaSaudavel:0][MacaSuculenta:0]";
+	HR_Group = "0";
+	HR_Desc = "Situa\303\247\303\243o do P\303\251 da ma\303\247\303\243. Probabilidade da situa\303\247\303\243o do p\303\251 da mesa ser boa. Neste nodo leva-se em conta: geadas, enxames, ataques de bichos...";
+	HR_State_1 = "";
+	HR_State_0 = "";
+	HR_NodeSize = "(144, 69)";
+    }
+
+    potential (SituacaoSolo)
+    {
+	data = ( 0.75 0.25 );
+    }
+
+    potential (Resfriamento | OrigemCompra)
+    {
+	data = (( 0.75 0.25 )	%  OrigemCompra=Distribuidor
+		( 0.95 0.05 )	%  OrigemCompra=Feira
+		( 0.05 0.95 ));	%  OrigemCompra=Supermercado
+    }
+
+    potential (MacaSuculenta | Resfriamento TipoMaca SituacaoPeh)
+    {
+	data = (((( 0.15 0.85 )	%  Resfriamento=false  TipoMaca=Argentina  SituacaoPeh=bom
+		  ( 0.45 0.55 ))	%  Resfriamento=false  TipoMaca=Argentina  SituacaoPeh=ruim
+		 (( 0.02 0.98 )	%  Resfriamento=false  TipoMaca=Fuji  SituacaoPeh=bom
+		  ( 0.4 0.6 ))	%  Resfriamento=false  TipoMaca=Fuji  SituacaoPeh=ruim
+		 (( 0.1 0.9 )	%  Resfriamento=false  TipoMaca=Gala  SituacaoPeh=bom
+		  ( 0.5 0.5 ))	%  Resfriamento=false  TipoMaca=Gala  SituacaoPeh=ruim
+		 (( 0.2 0.8 )	%  Resfriamento=false  TipoMaca=Pink Lady  SituacaoPeh=bom
+		  ( 0.45 0.55 )))	%  Resfriamento=false  TipoMaca=Pink Lady  SituacaoPeh=ruim
+		((( 0.2 0.8 )	%  Resfriamento=true  TipoMaca=Argentina  SituacaoPeh=bom
+		  ( 0.55 0.45 ))	%  Resfriamento=true  TipoMaca=Argentina  SituacaoPeh=ruim
+		 (( 0.09 0.91 )	%  Resfriamento=true  TipoMaca=Fuji  SituacaoPeh=bom
+		  ( 0.45 0.55 ))	%  Resfriamento=true  TipoMaca=Fuji  SituacaoPeh=ruim
+		 (( 0.16 0.84 )	%  Resfriamento=true  TipoMaca=Gala  SituacaoPeh=bom
+		  ( 0.55 0.45 ))	%  Resfriamento=true  TipoMaca=Gala  SituacaoPeh=ruim
+		 (( 0.15 0.85 )	%  Resfriamento=true  TipoMaca=Pink Lady  SituacaoPeh=bom
+		  ( 0.5 0.5 ))));	%  Resfriamento=true  TipoMaca=Pink Lady  SituacaoPeh=ruim
+    }
+
+    potential (OrigemCompra)
+    {
+	data = ( 0.25 0.15 0.6 );
+    }
+
+    potential (TipoMaca)
+    {
+	data = ( 0.2 0.3 0.35 0.15 );
+    }
+
+    potential (UtilizouAgrotoxico)
+    {
+	data = ( 0.1 0.9 );
+    }
+
+    potential (SituacaoPeh | SituacaoSolo UtilizouAgrotoxico)
+    {
+	data = ((( 0.5 0.5 )	%  SituacaoSolo=bom  UtilizouAgrotoxico=não
+		 ( 0.85 0.15 ))	%  SituacaoSolo=bom  UtilizouAgrotoxico=sim
+		(( 0.2 0.8 )	%  SituacaoSolo=ruim  UtilizouAgrotoxico=não
+		 ( 0.55 0.45 )));	%  SituacaoSolo=ruim  UtilizouAgrotoxico=sim
+    }
+} % class macaSaudavel

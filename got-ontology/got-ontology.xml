@@ -1,0 +1,466 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#"
+     xml:base="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#composed_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#composed_by"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#has_sails_hability -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#has_sails_hability">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#ship"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#is_fire_proof -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#is_fire_proof">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Targaryen"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#murdered -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#murdered"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#owned_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#owned_by">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#owns"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#owns -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#owns"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#participated -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#participated"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#sits_on -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#sits_on">
+        <rdfs:range rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Iron_Throne"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#was_born -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#was_born"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#wear -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#wear"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Greyjoy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Greyjoy">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#has_sails_hability"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#ship"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#was_born"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Pyke"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#house"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Iron_Throne -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Iron_Throne"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#house"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Targaryen -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Targaryen">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#house"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#direwolf -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#direwolf">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#owned_by"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#wolf"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#house -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#house"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#king -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#king">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#sits_on"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Iron_Throne"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#wear"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#crown"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#kingsguard -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#kingsguard"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#kingslayer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#kingslayer">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#murdered"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#king"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#participated"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#kingsguard"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#ship -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#ship"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#stark_wolfpack -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#stark_wolfpack">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#composed_by"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">6</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#direwolf"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#wolf -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#wolf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Aerys_II -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Aerys_II">
+        <is_fire_proof rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Fire"/>
+        <sits_on rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Trono"/>
+        <wear rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#crown"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Arya -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Arya">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Bran -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Bran">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Fire -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Fire"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Ghost -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Ghost">
+        <owned_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Jon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Grey_Wind -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Grey_Wind">
+        <owned_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Robb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Guarda_Real -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Guarda_Real">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#kingsguard"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Jaime -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Jaime">
+        <murdered rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Aerys_II"/>
+        <participated rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Guarda_Real"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Jon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Jon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Lady -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Lady">
+        <owned_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Sansa"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Nymeria -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Nymeria">
+        <owned_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Arya"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Pyke -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Pyke"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Rickon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Rickon">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Robb -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Robb">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Sansa -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Sansa">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Stark"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Shaggydog -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Shaggydog">
+        <owned_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Rickon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Summer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Summer">
+        <owned_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Bran"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Theon -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Theon">
+        <has_sails_hability rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#navio"/>
+        <was_born rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Pyke"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Trono -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Trono">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Iron_Throne"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#crown -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#crown"/>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#grupo_de_lobos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#grupo_de_lobos">
+        <composed_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Ghost"/>
+        <composed_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Grey_Wind"/>
+        <composed_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Lady"/>
+        <composed_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Nymeria"/>
+        <composed_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Shaggydog"/>
+        <composed_by rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Summer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#navio -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#navio">
+        <rdf:type rdf:resource="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#ship"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Arya"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Bran"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Jon"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Rickon"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Robb"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Sansa"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Ghost"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Grey_Wind"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Lady"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Nymeria"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Shaggydog"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/rodolfolottin/ontologies/2016/4/untitled-ontology-2#Summer"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi -->
+
